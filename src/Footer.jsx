@@ -1,6 +1,6 @@
 import './Footer.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebookF, faTwitter, faInstagram, faYoutube, faTwitch, faDiscord} from '@fortawesome/free-brands-svg-icons';
+import { faFacebookF, faXTwitter, faInstagram, faYoutube, faTwitch, faDiscord} from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 function Footer() {
@@ -29,14 +29,28 @@ function Footer() {
         <a href="#steam"><i className="fab fa-steam"></i></a>
       </div> */}
       <div className="social-links">
-      <Link to="https://www.facebook.com/share/19p4zgsZzg/"><FontAwesomeIcon icon={faFacebookF} /></Link>
-      <Link to="https://twitter.com/MoizeGaming/"><FontAwesomeIcon icon={faTwitter} /></Link>
-      <Link to="https://www.instagram.com/Moize_Gaming/"><FontAwesomeIcon icon={faInstagram} /></Link>
-      <Link to="https://www.youtube.com/@Moize_Gaming/"><FontAwesomeIcon icon={faYoutube} /></Link>
-      <Link to="https://www.twitch.tv/moize_gaming/"><FontAwesomeIcon icon={faTwitch} /></Link>
-      <Link to="https://discord.gg/WeuPCBCm"><FontAwesomeIcon icon={faDiscord} /></Link>
-      <Link to="https://gamingmoize@gmail.com/"><FontAwesomeIcon icon={faEnvelope} /></Link>
-    </div>
+        <a href="https://www.facebook.com/share/19p4zgsZzg/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <FontAwesomeIcon icon={faFacebookF} />
+        </a>
+        <a href="https://twitter.com/MoizeGaming/" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+          <FontAwesomeIcon icon={faXTwitter} />
+        </a>
+        <a href="https://www.instagram.com/Moize_Gaming/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <FontAwesomeIcon icon={faInstagram} />
+        </a>
+        <a href="https://www.youtube.com/@Moize_Gaming/" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+          <FontAwesomeIcon icon={faYoutube} />
+        </a>
+        <a href="https://www.twitch.tv/moize_gaming/" target="_blank" rel="noopener noreferrer" aria-label="Twitch">
+          <FontAwesomeIcon icon={faTwitch} />
+        </a>
+        <a href="https://discord.gg/WeuPCBCm" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+          <FontAwesomeIcon icon={faDiscord} />
+        </a>
+        <a href="mailto:gamingmoize@gmail.com" aria-label="Email">
+          <FontAwesomeIcon icon={faEnvelope} />
+        </a>
+      </div>
         </div>
 
         <div className="footer-section">
