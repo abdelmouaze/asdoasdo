@@ -1,7 +1,4 @@
 import './Footer.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebookF, faXTwitter, faInstagram, faYoutube, faTwitch, faDiscord} from '@fortawesome/free-brands-svg-icons';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 function Footer() {
   return (
@@ -30,25 +27,25 @@ function Footer() {
       </div> */}
       <div className="social-links">
         <a href="https://www.facebook.com/share/19p4zgsZzg/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-          <FontAwesomeIcon icon={faFacebookF} />
+         <i className="fab fa-facebook-f"></i>
         </a>
         <a href="https://twitter.com/MoizeGaming/" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
-          <FontAwesomeIcon icon={faXTwitter} />
+          <i className="fab fa-twitter"></i>
         </a>
         <a href="https://www.instagram.com/Moize_Gaming/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <FontAwesomeIcon icon={faInstagram} />
+          <i className="fab fa-instagram"></i>
         </a>
         <a href="https://www.youtube.com/@Moize_Gaming/" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-          <FontAwesomeIcon icon={faYoutube} />
+          <i className="fab fa-youtube"></i>
         </a>
         <a href="https://www.twitch.tv/moize_gaming/" target="_blank" rel="noopener noreferrer" aria-label="Twitch">
-          <FontAwesomeIcon icon={faTwitch} />
+          <i className="fab fa-twitch"></i>
         </a>
         <a href="https://discord.gg/WeuPCBCm" target="_blank" rel="noopener noreferrer" aria-label="Discord">
-          <FontAwesomeIcon icon={faDiscord} />
+          <i className="fab fa-discord"></i>
         </a>
         <a href="mailto:gamingmoize@gmail.com" aria-label="Email">
-          <FontAwesomeIcon icon={faEnvelope} />
+          <i className="fab fa-envelope"></i>
         </a>
       </div>
         </div>
