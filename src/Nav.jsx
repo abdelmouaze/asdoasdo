@@ -1,21 +1,39 @@
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import ThemeToggle from './components/ThemeToggle';
 import './Nav.css';
-
 function Nav() {
+  const [open, setOpen] = useState(false);
   return (
     <nav className="nav">
       <div className="logo-container">
-        <img 
-          src="https://img.freepik.com/free-vector/gradient-gaming-logo-template_52683-132733.jpg?semt=ais_hybrid&w=740" 
-          alt="Moize Gaming Logo" 
-        />
-        <h2>Moize Gaming</h2>
+        <Link to="/" className="brand" onClick={() => setOpen(false)}>
+          <img 
+            src="/Abdo.png" 
+            alt="Moize Gaming Logo" 
+          />
+          <h2>Moize Gaming</h2>
+        </Link>
       </div>
-      <ul className="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#products">Products</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
+
+      <button
+        className="menu-toggle"
+        aria-label="Toggle navigation menu"
+        aria-expanded={open}
+        onClick={() => setOpen((v) => !v)}
+      >
+        <span />
+        <span />
+        <span />
+      </button>
+
+      <ul className={`nav-links${open ? ' open' : ''}`}>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/about">About</Link></li>
+        <li><Link to="/products">Products</Link></li>
+        <li><Link to="/contact">Contact</Link></li>
       </ul>
+      
     </nav>
   );
 }

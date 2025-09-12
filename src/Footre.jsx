@@ -17,7 +17,7 @@ function Footer() {
         </div>
         <div className="footer-section">
           <h4>Contact Us</h4>
-          <p>Email: info@moize.com</p>
+          <p>Email: gamingmoize@gmail.com</p>
           <p>Phone: (123) 456-7890</p>
         </div>
       </div>

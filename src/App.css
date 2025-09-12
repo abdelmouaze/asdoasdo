@@ -1,3 +1,5 @@
+
+header
 .container {
   display: flex;
   justify-content: center;
@@ -10,7 +12,6 @@
 }
 
 .main-content {
-  padding-top: 80px;
   width: 100%;
 }
 
@@ -18,43 +19,46 @@
   text-align: center;
   padding: 2rem 0;
   margin-bottom: 2rem;
-  background: linear-gradient(to right, #f8f9fa, #e9ecef);
-  border-radius: 8px;
+  background: var(--background-secondary);
+ 
 }
 
 .hero h1 {
   font-size: 2.5rem;
-  color: #333;
+  color: var(--text-primary);
   margin-bottom: 1rem;
 }
 
 .hero p {
-  color: #666;
+  color: var(--text-secondary);
   font-size: 1.2rem;
 }
 
 .products {
   padding: 2rem 0;
   width: 100%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  
 }
 
 .products h2 {
   text-align: center;
   margin-bottom: 2rem;
-  color: #333;
+  color: #d8d2d2;
   font-size: 2rem;
+  font-weight: bold;
 }
 
 .products-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
   gap: 2rem;
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Logo Styles */
 .logo-container {
   display: flex;
   align-items: center;
@@ -104,4 +108,67 @@
   .products-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+.app {
+  background-color: var(--background-primary);
+  color: var(--text-primary);
+}
+
+.card-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card-row {
+  display: flex;
+  gap: 0px; 
+  margin-bottom: 20px;
+}
+
+.card {
+  background: var(--card-bg);
+  border-color: var(--border-color);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  min-width: 250px;
+  
+}
+
+.card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 16px;
+}
+
+.card-title {
+  margin: 0 0 8px 0;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.card-description {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Add this new style for the theme toggle button */
+.theme-toggle-btn {
+  padding: 0.5rem;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  background: var(--background-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle-btn:hover {
+  background: var(--background-primary);
 }

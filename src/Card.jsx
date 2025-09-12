@@ -1,4 +1,5 @@
 function Card({ image, title, description, price, badge }) {
+  
   return (
     <div className="card">
       {badge && <div className="card-badge">{badge}</div>}
