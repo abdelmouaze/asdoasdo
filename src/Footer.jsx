@@ -1,7 +1,7 @@
 import './Footer.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebookF, faTwitter, faInstagram, faYoutube, faTwitch, faDiscord} from '@fortawesome/free-brands-svg-icons';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fontawesome/react-fontawesome';
+import { faFacebookF, faTwitter, faInstagram, faYoutube, faTwitch, faDiscord} from '@fontawesome/free-brands-svg-icons';
+import { faEnvelope } from '@fontawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 function Footer() {
   return (
