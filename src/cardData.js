@@ -1,4 +1,4 @@
-import  { iconName } from "@fortawesome/free-brands-svg-icons/fa11ty";
+
 
 export const data = [[
   {
