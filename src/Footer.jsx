@@ -45,7 +45,7 @@ function Footer() {
           <i className="fab fa-discord"></i>
         </a>
         <a href="mailto:gamingmoize@gmail.com" aria-label="Email">
-          <i className="fab fa-envelope"></i>
+          <i className="fas fa-envelope"></i>
         </a>
       </div>
         </div>
@@ -57,7 +57,7 @@ function Footer() {
             <li><Link to="/about">About</Link></li>
             <li><Link to="/products">Products</Link></li>
             <li><Link to="/contact">Contact</Link></li>
-            <li><Link to="/faq">FAQ</Link></li>
+            {/* Removed FAQ link (no route defined) */}
           </ul>
         </div>
 

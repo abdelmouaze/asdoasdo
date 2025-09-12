@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import Hero from './hero';
+import Hero from './Hero';
 import CardContainer from './CardContainer';
 import { data } from './cardData';
 import './Hero.css';
