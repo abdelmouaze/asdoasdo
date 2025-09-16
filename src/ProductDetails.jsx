@@ -59,6 +59,7 @@ export default function ProductDetails() {
 
   if (!product) {
     return (
+      <div style={{ paddingTop: '107"px' }}>
       <section className="product-details-section">
         <div className="container">
           <div className="not-found">
@@ -68,10 +69,12 @@ export default function ProductDetails() {
           </div>
         </div>
       </section>
-    );
+      </div>
+      );
   }
 
   return (
+    <div style={{ paddingTop: '107px' }}>
     <section className="product-details-section">
       <div className="container details-layout">
         {/* Gallery */}
@@ -172,5 +175,6 @@ export default function ProductDetails() {
         </div>
       </div>
     </section>
+    </div>
   );
 }

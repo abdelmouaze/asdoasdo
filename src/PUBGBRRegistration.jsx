@@ -5,7 +5,7 @@ import "./PUBG.css";
 const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 const phoneRe = /^[0-9+()\s-]{6,}$/;
 
-export default function PUBGBRRegistration({ eventName = "PUBG Morocco Cup 2025: BR", onClose }) {
+export default function PUBGBRRegistration({ eventName = "PUBG Morocco Cup 2025: BR", gameTitle = "", onClose }) {
   const [form, setForm] = useState({
     fullName: "",
     email: "",
@@ -53,7 +53,7 @@ export default function PUBGBRRegistration({ eventName = "PUBG Morocco Cup 2025:
       setSubmitting(true);
       // Simulate async submit and persist locally for demo
       await new Promise((res) => setTimeout(res, 800));
-      const payload = { id: crypto.randomUUID?.() || String(Date.now()), eventName, ...form, createdAt: new Date().toISOString() };
+      const payload = { id: crypto.randomUUID?.() || String(Date.now()), eventName, gameTitle, ...form, createdAt: new Date().toISOString() };
       const raw = localStorage.getItem("pubg_registrations");
       const list = raw ? JSON.parse(raw) : [];
       list.push(payload);

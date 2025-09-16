@@ -2,6 +2,7 @@ import './About.css';
 
 function About() {
   return (
+    <div style={{ paddingTop: '107px' }}>
     <div className="about-page">
       <div className="container">
         <div className="about-content">
@@ -57,6 +58,7 @@ function About() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

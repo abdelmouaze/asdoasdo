@@ -11,8 +11,11 @@ import './App.css';
 import './Nav.css';
 import './Footer.css';
 import './theme.css';
+import ScrollToTop from './ScrollToTop';
+import RegistrationTable from './RegistrationTable';
 import { ThemeProvider } from './context/ThemeContext';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 function App() {
   return (
     <BrowserRouter>
@@ -23,6 +26,7 @@ function App() {
           </header>
 
           <main className="main-content">
+            <ScrollToTop />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
@@ -31,6 +35,7 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/order" element={<Order />} />
               <Route path="/event/:eventName" element={<EventPage />} />
+              <Route path="/event/:eventName/registrations" element={<RegistrationTable />} />
             </Routes>
           </main>
           <Footer />

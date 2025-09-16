@@ -57,7 +57,7 @@
 /* Improve social links */
 .social-links {
   display: flex;
-  gap: 1.5rem;
+  gap: 0.5rem;
   margin-top: 1.5rem;
 }
 

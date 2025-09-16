@@ -4,7 +4,7 @@ import CardContainer from './CardContainer';
 import { data } from './cardData';
 import './Hero.css';
 import SearchBar from './components/SearchBar';
-import EventCards from './EventCards';
+
 
 function Home() {
   const [searchGame, setSearchGame] = useState('Free Fire');
@@ -33,7 +33,7 @@ function Home() {
   };
 
   return (
-    <>
+    <div style={{ paddingTop: '107px' }}>
       <Hero />
       <SearchBar onSearch={handleSearch} />
 
@@ -57,7 +57,7 @@ function Home() {
           ))}
         </div>
       </section>
-    </>
+    </div>
   );
 }
 

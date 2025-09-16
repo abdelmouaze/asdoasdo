@@ -30,14 +30,14 @@
 .icon {
   position: absolute;
   right: 10px;
-  bottom: -20px;
-  width: 30px;
-  height: 30px;
+  bottom: -28px;
+  width: 56px;
+  height: 56px;
   background-color: #070807; 
-  padding: 10px;
+  padding: 12px;
   border-radius: 50%;
   font-size: 18px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.45);
 }
 
 .icon img {
@@ -83,9 +83,10 @@
   }
   
   .icon {
-    width: 28px;
-    height: 28px;
-    padding: 8px;
+    width: 52px;
+    height: 52px;
+    padding: 10px;
+    bottom: -26px;
   }
 }
 
@@ -107,11 +108,11 @@
   }
   
   .icon {
-    width: 25px;
-    height: 25px;
-    padding: 6px;
+    width: 48px;
+    height: 48px;
+    padding: 8px;
     right: 8px;
-    bottom: -15px;
+    bottom: -24px;
   }
   
   .card-list {
@@ -125,59 +126,91 @@
   }
 }
 
-/* Small Mobile */
-@media (max-width: 480px) {
+/* Phone compact layout (most phones up to 640px) */
+@media (max-width: 640px) {
   .game-card {
     border-radius: 8px;
+    background: transparent;
   }
   
   .card-header {
-    height: 90px;
-    border-radius: 8px 8px 0 0;
+    height: 72px;
+    border-radius: 12px;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+  }
+  .card-header::before{
+    content:"";
+    position:absolute;inset:0;
+    background: linear-gradient(90deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.0) 100%);
+  }
+  .card-header::after{
+    content:"›";
+    position:absolute;right:10px;top:50%;transform:translateY(-50%);
+    color:#fff;font-weight:900;font-size:22px;
+    text-shadow:0 2px 6px rgba(0,0,0,.35);
+  }
+  .game-card.expanded .card-header::after {
+    transform: translateY(-50%) rotate(90deg);
   }
   
   .card-header h3 {
-    font-size: 0.9rem;
-    bottom: 6px;
-    left: 6px;
+    font-size: 0.95rem;
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: auto; left: 56px; right: 48px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    position: absolute;
+    z-index: 1; color: #fff;
   }
   
   .icon {
-    width: 22px;
-    height: 22px;
-    padding: 5px;
-    right: 6px;
-    bottom: -12px;
+    width: 60px;
+    height: 60px;
+    padding: 12px;
+    left: 50%;
+    bottom: -30px;
+    right: auto;
+    top: auto;
+    transform: translateX(-50%);
+    z-index: 2;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.38);
   }
   
   .card-list {
-    margin: 20px 0 6px 0;
-    padding: 0 10px;
+    display: none; /* hidden by default on mobile */
   }
-  
-  .card-list li {
+  .game-card.expanded .card-list {
+    display: block;
+    margin: 8px 0 0 0;
+    padding: 8px 12px;
+    background: rgba(17,24,39,0.95);
+    border: 1px solid rgba(148,163,184,0.25);
+    border-radius: 10px;
+    backdrop-filter: blur(6px);
+  }
+  .game-card.expanded .card-list li {
+    color: #e5e7eb;
+    border-bottom-color: rgba(255,255,255,0.08);
     padding: 8px 0;
-    font-size: 0.9rem;
   }
 }
 
 /* Extra Small Mobile */
 @media (max-width: 360px) {
   .card-header {
-    height: 80px;
+    height: 66px;
   }
   
   .card-header h3 {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
   }
   
   .icon {
-    width: 20px;
-    height: 20px;
-    padding: 4px;
-  }
-  
-  .card-list li {
-    font-size: 0.85rem;
+    width: 24px;
+    height: 24px;
+    padding: 5px;
   }
 }

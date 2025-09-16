@@ -33,7 +33,8 @@ export default function EventPage() {
           )}
           
           <PUBGBRRegistration 
-            eventName={decodedEventName} 
+            eventName={decodedEventName}
+            gameTitle={gameTitle}
             onClose={() => navigate("/")} 
           />
         </div>

@@ -25,6 +25,7 @@ function Contact() {
   };
 
   return (
+    <div style={{ paddingTop: '107px' }}>
     <div className="contact-page">
       <div className="container">
         <div className="contact-content">
@@ -125,6 +126,7 @@ function Contact() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

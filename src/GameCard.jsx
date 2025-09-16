@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import "./GameCard.css";
 
 function GameCard({title,description,image,color,icon}) {
   const navigate = useNavigate();
+  const [expanded, setExpanded] = useState(false);
   
   const handleEventClick = (eventName) => {
     const encodedEventName = encodeURIComponent(eventName);
@@ -15,10 +17,22 @@ function GameCard({title,description,image,color,icon}) {
     });
   };
 
+  const toggleExpand = (e) => {
+    // Only used on mobile via CSS; safe elsewhere
+    e?.stopPropagation?.();
+    setExpanded((v) => !v);
+  };
+
+  const goToRegistrations = (e) => {
+    e?.stopPropagation?.();
+    const encodedTitle = encodeURIComponent(title);
+    navigate(`/event/${encodedTitle}/registrations`, { state: { gameTitle: title } });
+  };
+
   return (
-    <div className="game-card">
-      <div className="card-header" style={{ backgroundImage: `url(${image})`, borderColor: color }}>
-        <h3>{title}</h3>
+    <div className={`game-card${expanded ? ' expanded' : ''}`}>
+      <div className="card-header" style={{ backgroundImage: `url(${image})`, borderColor: color }} onClick={toggleExpand} aria-expanded={expanded} role="button">
+        <h3 onClick={goToRegistrations} style={{ cursor: 'pointer' }}>{title}</h3>
         <div className="icon" style={{ backgroundColor: color }}>
           <img src={icon} alt="icon" />
         </div>

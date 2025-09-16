@@ -961,6 +961,7 @@ const [category, setCategory] = useState("all");
   // Commander now navigates to the dedicated order page
 
   return (
+    <div style={{ paddingTop: '107px' }}>
     <section id="products" className="products-section">
       <div className="container">
         {/* Hero Carousel */}
@@ -1045,9 +1046,7 @@ const [category, setCategory] = useState("all");
         <div id="products-grid" className="products-grid">
           {filtered.map((product) => (
             <div key={product.id} className="product-card">
-              <div className="card-header">
-                <span className="badge">{product.badge}</span>
-              </div>
+
 
               {/* Product Image */}
               <div className="image-container">
@@ -1134,6 +1133,7 @@ const [category, setCategory] = useState("all");
 
       </div>
     </section>
+    </div>
   );
 };
 
