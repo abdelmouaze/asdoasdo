@@ -3,18 +3,22 @@ import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
 import PUBGBRRegistration from "./PUBGBRRegistration";
 import "./EventPage.css";
 
+
+
+
 export default function EventPage() {
   const { eventName } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   
-  // Decode the event name from URL
+ 
   const decodedEventName = decodeURIComponent(eventName || "");
   
-  // Get game data from navigation state
+ 
   const { gameImage, gameTitle, gameColor } = location.state || {};
 
   return (
+    <div style={{ paddingTop: '107px' }}>
     <section className="event-page">
       <div className="event-container">
         <Link to="/" className="event-back-link">
@@ -23,8 +27,7 @@ export default function EventPage() {
         
         <div className="event-card-wrapper">
           {gameImage && (
-            <div className="event-hero-image">
-              <img src={gameImage} alt={gameTitle} />
+            <div style={{ backgroundImage: `url(${gameImage})` }} className="event-hero-image">
               <div className="event-hero-overlay">
                 <h1 className="event-hero-title">{gameTitle}</h1>
                 <p className="event-hero-subtitle">Tournoi Officiel Morocco Cup 2025</p>
@@ -40,5 +43,6 @@ export default function EventPage() {
         </div>
       </div>
     </section>
+    </div>
   );
 }

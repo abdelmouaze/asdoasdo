@@ -25,7 +25,8 @@ export default function RegistrationTable() {
     }
   }, [decodedEventName, location.key]);
 
-  return (
+  return ( 
+    <div style={{ paddingTop: '107px' }}>
     <section style={{ padding: '32px 16px' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 12 }}>
@@ -66,5 +67,6 @@ export default function RegistrationTable() {
         )}
       </div>
     </section>
+    </div>
   );
 }

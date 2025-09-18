@@ -121,6 +121,11 @@ footer,
     padding: 1rem;
   }
 
+  /* Prevent content from being hidden under the fixed navbar on mobile */
+  .main-content {
+    padding-top: 64px;
+  }
+
   .hero h1 {
     font-size: 2rem;
   }

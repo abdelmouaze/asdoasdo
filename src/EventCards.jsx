@@ -15,6 +15,7 @@ export default function EventCards() {
   const [openEvent, setOpenEvent] = useState(null);
 
   return (
+
     <div className="cards-container">
       {events.map((ev) => (
         <div key={ev} className="event-card" onClick={() => setOpenEvent(ev)}>
@@ -34,5 +35,5 @@ export default function EventCards() {
         </div>
       )}
     </div>
-  );
+    );
 }

@@ -12,14 +12,14 @@ export const data = [[
   {
     title: "PUBG",
     description: ["PUBG Morocco Cup 2025: BR","PUBG Morocco Cup 2025: TDM","PUBG Morocco Cup 2025: Domination","PUBG Morocco Cup 2025: Payload","PUBG Morocco Cup 2025: Global"],
-    image: "PUBG.jpg",
+    image: "/PUBG.jpg",
     color: "#FFAA00",
      icon: "https://img.icons8.com/?size=100&id=zY5ctgTmskjC&format=png&color=000000"
   },
   {
     title: "Fortnite",  
     description: ["Fortnite Morocco Cup 2025: BR","Fortnite Morocco Cup 2025: Zero Build","Fortnite Morocco Cup 2025: Creative","Fortnite Morocco Cup 2025:","Fortnite Morocco Cup 2025: Team Rumble","Fortnite Morocco Cup 2025: Global"],
-    image: "Fortnite.jpg",
+    image: "/Fortnite.jpg",
     color: "#005699",
     icon: "https://api.iconify.design/simple-icons:fortnite.svg?color=%23888888"
   }
@@ -28,7 +28,7 @@ export const data = [[
   {
     title: "Apex Legends",
     description: ["Apex Legends Morocco Cup 2025: BR","Apex Legends Morocco Cup 2025: Arenas","Apex Legends Morocco Cup 2025: Control","Apex Legends Morocco Cup 2025: Gun Run","Apex Legends Morocco Cup 2025: Hardcore Royale","Apex Legends Morocco Cup 2025: Global"],
-    image: "ApexLegends.jpg",
+    image: "/ApexLegends.jpg",
     color: "cyan",
     icon: "https://www.svgrepo.com/show/514704/apex-legends.svg"
   },
@@ -51,7 +51,7 @@ export const data = [[
   {
     title: "FC 25 ",
     description: ["FC 25 Morocco Cup 2025: Ultimate Team","FC 25 Morocco Cup 2025: Pro Clubs","FC 25 Morocco Cup 2025: VOLTA Footbal"],
-    image: "FC25.jpg",
+    image: "/FC25.jpg",
     color: "green",
     icon: "https://api.iconify.design/simple-icons:fifa.svg?color=%230f661e"
   },
@@ -82,14 +82,14 @@ export const data = [[
   {
     title: "Valorant",
     description: ["Valorant Morocco Cup 2025: Competitive","Valorant Morocco Cup 2025: Unrated","Valorant Morocco Cup 2025: Spike Rush","Valorant Morocco Cup 2025: Deathmatch","Valorant Morocco Cup 2025: Premier","Valorant Morocco Cup 2025: Global"],
-    image: "Valorant.jpg",
+    image: "/Valorant.jpg",
     color: "#FF455D",
     icon: "https://img.icons8.com/?size=100&id=4e6jaJRUzaF9&format=png&color=000000"
   },
   {
     title: "Rocket League",
     description: ["Rocket League Morocco Cup 2025: 1v1 Duel","Rocket League Morocco Cup 2025: 2v2 Doubles","Rocket League Morocco Cup 2025: 3v3 Standard","Rocket League Morocco Cup 2025: Rumble","Rocket League Morocco Cup 2025: Hoops","Rocket League Morocco Cup 2025: Global"],
-    image: "RocketLeague.jpg",
+    image: "/RocketLeague.jpg",
     color: "#1387FC",
     icon: "https://img.icons8.com/?size=100&id=SBEPPteV3KC7&format=png&color=000000"
   }

@@ -57,26 +57,100 @@
 /* Improve social links */
 .social-links {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.8rem;
   margin-top: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .social-links a {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(2, 6, 23, 0.45);
+  color: white;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(148, 163, 184, 0.25);
-  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
+/* Facebook */
+.social-links a[aria-label="Facebook"] {
+  background: #1877f2;
+}
+
+.social-links a[aria-label="Facebook"]:hover {
+  background: #166fe5;
+  box-shadow: 0 0 15px rgba(24, 119, 242, 0.5);
+}
+
+/* Twitter */
+.social-links a[aria-label="X (Twitter)"] {
+  background: #000000;
+}
+
+.social-links a[aria-label="X (Twitter)"]:hover {
+  background: #141414;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Instagram */
+.social-links a[aria-label="Instagram"] {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+
+.social-links a[aria-label="Instagram"]:hover {
+  box-shadow: 0 0 15px rgba(220, 39, 67, 0.5);
+  transform: scale(1.1);
+}
+
+/* YouTube */
+.social-links a[aria-label="YouTube"] {
+  background: #ff0000;
+}
+
+.social-links a[aria-label="YouTube"]:hover {
+  background: #e60000;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+}
+
+/* Twitch */
+.social-links a[aria-label="Twitch"] {
+  background: #9146ff;
+}
+
+.social-links a[aria-label="Twitch"]:hover {
+  background: #7d3ae6;
+  box-shadow: 0 0 15px rgba(145, 70, 255, 0.5);
+}
+
+/* Discord */
+.social-links a[aria-label="Discord"] {
+  background: #5865f2;
+}
+
+.social-links a[aria-label="Discord"]:hover {
+  background: #4752c4;
+  box-shadow: 0 0 15px rgba(88, 101, 242, 0.5);
+}
+
+/* Email */
+.social-links a[aria-label="Email"] {
+  background: #ea4335;
+}
+
+.social-links a[aria-label="Email"]:hover {
+  background: #d33426;
+  box-shadow: 0 0 15px rgba(234, 67, 53, 0.5);
+}
+
+/* Hover effects for all icons */
 .social-links a:hover {
-  transform: translateY(-3px);
-  background: rgba(2, 6, 23, 0.65);
-  border-color: rgba(168, 85, 247, 0.45);
+  transform: translateY(-3px) scale(1.1);
+  color: white;
+  text-decoration: none;
 }
 
 .newsletter {

@@ -156,5 +156,6 @@ export default function PUBGBRRegistration({ eventName = "PUBG Morocco Cup 2025:
         </div>
       </form>
     </div>
+
   );
 }

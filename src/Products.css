@@ -1,6 +1,4 @@
-/* Products.css - Grille fixe 3 cartes/par ligne + responsive */
 
-/* ===== Products Hero Carousel ===== */
 .products-hero {
   position: relative;
   margin-bottom: 40px;
@@ -110,17 +108,14 @@
 }
 
 .container {
-  /* Equal left/right gutter at all widths */
   --gutter: clamp(16px, 4vw, 40px);
-  max-width: 1200px; /* centers content block */
+  max-width: 1200px; 
   margin-left: auto;
   margin-right: auto;
   padding-left: var(--gutter);
   padding-right: var(--gutter);
   overflow-x: hidden;
 }
-
-/* Title */
 .title-section {
   text-align: center;
   margin-bottom: 64px;
@@ -147,8 +142,6 @@
   max-width: 600px;
   margin: 0 auto;
 }
-
-/* Category chips row (visible filter above grid) */
 .category-chips-row {
   display: flex;
   flex-wrap: wrap;
@@ -172,9 +165,6 @@
   border-color: rgba(168, 85, 247, 0.6);
   color: #fff;
 }
-
-/* --- GRID: forcer 3 colonnes par ligne --- */
-/* Desktop / large screens: 3 colonnes */
 .products-grid {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr) !important;
@@ -182,13 +172,10 @@
   margin-bottom: 48px;
   width: 100%;
   grid-auto-flow: row;
-  overflow: visible; /* 👈 هادي ضرورية */
-  position: relative; /* 👈 stacking context stable */
+  overflow: visible; 
+  position: relative; 
   z-index: 1;
 }
-
-
-/* Tablettes : 2 colonnes */
 @media (max-width: 1200px) {
   .container {
     max-width: 1000px;
@@ -210,8 +197,6 @@
     --gutter: clamp(12px, 5vw, 20px);
   }
 }
-
-/* Mobile: 2 columns like marketplace cards */
 @media (max-width: 600px) {
   .products-grid {
     grid-template-columns: repeat(2, 1fr) !important;
@@ -236,21 +221,17 @@
     overflow: hidden;
     min-height: 2.4em;
   }
-  .category { font-size: 0.75rem; margin-bottom: 6px; }
-
-  /* Hide specs row on small cards to save space */
+  .category { font-size: 0.75rem; margin-bottom: 6px; }  
   .specs { display: none; }
 
   .price-row { padding-top: 10px; align-items: center; }
   .price {
     background: none;
     -webkit-text-fill-color: unset;
-    color: #f97316; /* orange price */
+    color: #f97316; 
     font-size: 1.05rem;
     font-weight: 800;
   }
-
-  /* Hide details button, use compact cart button */
   .details-btn { display: none; }
   .price-row .actions { gap: 6px; }
   .add-btn {
@@ -267,8 +248,6 @@
   .info h3 { font-size: 0.9rem; }
   .price { font-size: 1rem; }
 }
-
-/* Card */
 .product-card {
   position: relative;
   background: linear-gradient(180deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.6));
@@ -281,11 +260,8 @@
   display: flex;
   flex-direction: column;
   height: auto;
-  /* ❌ hadchi kaygta3 dropdown
-  overflow: hidden;  
-  */
-  overflow: visible; /* ✅ khalliha bach categories ybano fou9 */
-  z-index: 1; /* khalliha fi flow normal */
+  overflow: visible; 
+  z-index: 1; 
 }
 
 
@@ -295,7 +271,6 @@
   border-color: rgba(168, 85, 247, 0.45);
 }
 
-/* Card Header */
 .card-header {
   display: flex;
   justify-content: space-between;
@@ -322,7 +297,6 @@
   font-size: 1.2rem;
 }
 
-/* Image */
 .image-container {
   position: relative;
   overflow: hidden;
@@ -343,7 +317,6 @@
   transform: scale(1.1);
 }
 
-/* Info */
 .info {
   margin-bottom: 16px;
   text-align: center;
@@ -364,7 +337,6 @@
   margin: 0;
 }
 
-/* Specs */
 .specs {
   margin-bottom: 20px;
   display: flex;
@@ -392,7 +364,6 @@
   border-radius: 50%;
 }
 
-/* Price Row */
 .price-row {
   display: flex;
   justify-content: space-between;
@@ -427,8 +398,7 @@
   border-color: rgba(168, 85, 247, 0.6);
   color: #fff;
 }
-
-/* CTA */
+  
 .cta-container {
   text-align: center;
 }
@@ -452,31 +422,28 @@
   box-shadow: 0 20px 40px -10px rgba(168, 85, 247, 0.4);
 }
 
-/* Toolbar: search, filter, cart */
 .products-toolbar {
   display: flex;
   gap: 16px;
   align-items: center;
   justify-content: space-between;
   margin: 24px 0 32px 0;
-  overflow: visible; /* allow dropdowns to escape */
+  overflow: visible; 
 }
 
-/* New composite searchbar: category + rounded search */
 .searchbar {
   display: flex;
   align-items: center;
   gap: 12px;
   flex: 1;
-  min-width: 0; /* allow shrink */
-  overflow: visible; /* ensure dropdown is not clipped */
+  min-width: 0;   
+  overflow: visible; 
 }
 
-/* Categories dropdown */
 .categories-menu {
   position: relative;
   z-index: 99;
-  display: inline-block; /* anchor for absolute dropdown below */
+  display: inline-block; 
 }
 
 .categories-trigger {
@@ -495,8 +462,8 @@
 
 .categories-list {
   position: absolute;
-  z-index: 1000; /* ✅ daba gha tban fou9 men ay card okhor */
-  top: calc(100% + 8px); /* bqat tlata ta7t */
+  z-index: 1000; 
+  top: calc(100% + 8px); 
   left: 0;
   min-width: 200px;
   max-height: 320px;
@@ -511,7 +478,6 @@
   box-shadow: 0 16px 28px -12px rgba(0, 0, 0, 0.35);
 }
 
-/* Visual cue when open */
 .categories-trigger[aria-expanded="true"] .chevron {
   transform: rotate(180deg);
   transition: transform 160ms ease;
@@ -610,10 +576,10 @@
 }
 
 .cart-button {
-  position: fixed; /* keep visible on scroll */
+  position: fixed;  
   right: max(16px, env(safe-area-inset-right));
   bottom: max(16px, env(safe-area-inset-bottom));
-  left: auto; /* avoid conflicting inline positioning */
+  left: auto;   
   z-index: 1100;
   background: rgba(15, 23, 42, 0.85);
   border: 1px solid rgba(168, 85, 247, 0.6);
@@ -625,7 +591,7 @@
   backdrop-filter: blur(6px);
   max-width: calc(100vw - 32px - env(safe-area-inset-left) - env(safe-area-inset-right));
   overflow: hidden;
-  contain: layout paint; /* prevent causing page overflow */
+  contain: layout paint;  
 }
 
 .cart-button:hover {
@@ -649,7 +615,7 @@
   border: 2px solid #0f172a;
 }
 
-/* Keep good placement on small screens */
+    
 @media (max-width: 600px) {
   .cart-button { 
     right: max(12px, env(safe-area-inset-right)); 
@@ -658,7 +624,7 @@
   }
 }
 
-/* Actions row */
+
 .price-row .actions {
   display: flex;
   gap: 8px;
@@ -683,7 +649,7 @@
   box-shadow: 0 10px 24px -8px rgba(236, 72, 153, 0.55);
 }
 
-/* Cart Drawer */
+
 .cart-drawer {
   position: fixed;
   top: 0;

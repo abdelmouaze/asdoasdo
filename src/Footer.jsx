@@ -41,7 +41,7 @@ function Footer() {
         <a href="https://www.twitch.tv/moize_gaming/" target="_blank" rel="noopener noreferrer" aria-label="Twitch">
           <i className="fab fa-twitch"></i>
         </a>
-        <a href="https://discord.gg/WeuPCBCm" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+        <a href="https://discord.gg/hMQmYYyK" target="_blank" rel="noopener noreferrer" aria-label="Discord">
           <i className="fab fa-discord"></i>
         </a>
         <a href="mailto:gamingmoize@gmail.com" aria-label="Email">

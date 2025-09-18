@@ -86,6 +86,7 @@ function Order() {
   };
 
   return (
+    <div style={{ paddingTop: '107px' }}>
     <div className="order-page">
       <div className="order-container">
         <div className="order-header">
@@ -199,6 +200,7 @@ function Order() {
           </form>
         </div>
       </div>
+    </div>
     </div>
   );
 }
