@@ -959,6 +959,41 @@ const [category, setCategory] = useState("all");
   const cartTotal = cart.reduce((sum, i) => sum + parsePrice(i.price) * i.qty, 0);
 
   // Commander now navigates to the dedicated order page
+  const goToCheckout = async (product) => {
+    // First add product to cart
+    addToCart(product);
+    
+    try {
+      // Get current cart items
+      const checkoutItems = cart.map(item => ({
+        title: item.title,
+        price: item.price,
+        image: item.image,
+        quantity: item.qty
+      }));
+      
+      console.log('Sending items to checkout:', checkoutItems);
+      
+      const response = await fetch('http://localhost:3000/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ items: checkoutItems }),
+      });
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Server error: ${errorText}`);
+      }
+      
+      const { url } = await response.json();
+      console.log('Redirecting to:', url);
+      window.location.href = url;
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
 
   return (
     <div style={{ paddingTop: '107px' }}>
@@ -1080,7 +1115,7 @@ const [category, setCategory] = useState("all");
                   >
                     Voir détails →
                   </Link>
-                  <button className="add-btn" onClick={() => addToCart(product)}>Ajouter</button>
+                  <button className="add-btn" onClick={() => goToCheckout(product)}>Ajouter et payer</button>
                 </div>
               </div>
             </div>
@@ -1126,7 +1161,40 @@ const [category, setCategory] = useState("all");
             </div>
             <div className="footer-actions">
               <button className="clear" onClick={clearCart}>Vider</button>
-              <button className="checkout" disabled={cart.length === 0} onClick={() => { setCartOpen(false); navigate('/order'); }}>Commander</button>
+  // In your Products.jsx file, the Commander button event handler has issues:
+<button 
+  className="checkout" 
+  disabled={cart.length === 0} 
+  onClick={async () => {
+    try {
+      const checkoutItems = cart.map(item => ({
+        title: item.title,
+        price: item.price,
+        image: item.image,
+        qty: item.qty
+      }));
+      
+      const response = await fetch('http://localhost:3000/create-checkout-session', {  // Missing proper URL
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ items: checkoutItems }),
+      });
+      
+      const { url } = await response.json();
+      if (url) {
+  window.location.href = url;
+} else {
+  console.error('Received undefined URL from server');
+  // Show error message to user
+}
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }}>
+  Commander
+</button>
             </div>
           </div>
         </aside>

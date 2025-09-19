@@ -15,10 +15,12 @@ import ScrollToTop from './ScrollToTop';
 import RegistrationTable from './RegistrationTable';
 import { ThemeProvider } from './context/ThemeContext';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { CartProvider } from './context/CartContext';
 
 function App() {
   return (
     <BrowserRouter>
+    <CartProvider>
       <ThemeProvider>
         <div className="app">
           <header style={{ position: 'sticky', top: 0, zIndex: 1000 }}>
@@ -41,6 +43,7 @@ function App() {
           <Footer />
         </div>
       </ThemeProvider>
+      </CartProvider>
     </BrowserRouter>
   );
 }
