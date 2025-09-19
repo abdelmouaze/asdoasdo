@@ -974,7 +974,7 @@ const [category, setCategory] = useState("all");
       
       console.log('Sending items to checkout:', checkoutItems);
       
-      const response = await fetch('http://localhost:3000/create-checkout-session', {
+      const response = await fetch('http://localhost:3000/api/create-checkout-session', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -1115,7 +1115,7 @@ const [category, setCategory] = useState("all");
                   >
                     Voir détails →
                   </Link>
-                  <button className="add-btn" onClick={() => goToCheckout(product)}>Ajouter et payer</button>
+                  <button className="add-btn" onClick={() => addToCart(product)}>Ajouter et payer</button>
                 </div>
               </div>
             </div>
@@ -1171,10 +1171,10 @@ const [category, setCategory] = useState("all");
         title: item.title,
         price: item.price,
         image: item.image,
-        qty: item.qty
+        quantity: item.qty
       }));
       
-      const response = await fetch('http://localhost:3000/create-checkout-session', {  // Missing proper URL
+      const response = await fetch('http://localhost:3000/api/create-checkout-session', {  // Corrected URL
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

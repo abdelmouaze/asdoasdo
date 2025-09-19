@@ -7,6 +7,7 @@ import Products from './Products';
 import EventPage from './EventPage';
 import ProductDetails from './ProductDetails';
 import Order from './Order';
+import Cancel from './Cancel';
 import './App.css';
 import './Nav.css';
 import './Footer.css';
@@ -36,6 +37,7 @@ function App() {
               <Route path="/products/:id" element={<ProductDetails />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/order" element={<Order />} />
+              <Route path="/cancel" element={<Cancel />} />
               <Route path="/event/:eventName" element={<EventPage />} />
               <Route path="/event/:eventName/registrations" element={<RegistrationTable />} />
             </Routes>
