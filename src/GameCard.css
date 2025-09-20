@@ -43,7 +43,7 @@
 .icon img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .card-list {
@@ -164,14 +164,14 @@
   }
   
   .icon {
-    width: 60px;
-    height: 60px;
-    padding: 12px;
-    left: 50%;
-    bottom: -30px;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    left: 12px;
+    top: 50%;
+    bottom: auto;
     right: auto;
-    top: auto;
-    transform: translateX(-50%);
+    transform: translateY(-50%);
     z-index: 2;
     box-shadow: 0 8px 18px rgba(0,0,0,0.38);
   }
@@ -205,8 +205,8 @@
   }
   
   .icon {
-    width: 24px;
-    height: 24px;
-    padding: 5px;
+    width: 32px;
+    height: 32px;
+    padding: 6px;
   }
 }
