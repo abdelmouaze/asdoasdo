@@ -46,7 +46,6 @@ function About() {
             </div>
           </div>
         </div>
-        {/* Image gallery */}
         <div className="about-gallery">
           <div className="gallery-grid">
             <img src="/PC Gaming Haute Performance.jpg" alt="PC Gaming Haute Performance" loading="lazy" />

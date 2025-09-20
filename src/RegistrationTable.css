@@ -1,0 +1,158 @@
+:root {
+  --bg-1: #0f172a;
+  --bg-2: #1e293b;
+  --bg-3: #334155;
+  --text-1: #ffffff;
+  --text-2: #e5e7eb;
+  --text-3: #94a3b8;
+  --border: rgba(148,163,184,.25);
+  --accent: #a78bfa;
+  --accent-strong: #7c3aed;
+  --card-bg: rgba(2,6,23,.35);
+  --card-bg-hover: rgba(2,6,23,.45);
+  --thead-bg: rgba(30,41,59,.65);
+}
+
+.reg-page {
+  padding-top: 107px;
+}
+
+.reg-section {
+  padding: 32px 16px;
+  background: linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 50%, var(--bg-3) 100%);
+  min-height: calc(100vh - 107px);
+}
+
+.reg-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.reg-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.reg-title {
+  color: var(--text-1);
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.2;
+  letter-spacing: .2px;
+}
+
+.reg-back {
+  color: var(--accent);
+  text-decoration: none;
+  border: 1px solid color-mix(in oklab, var(--accent) 40%, transparent);
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background .2s ease, border-color .2s ease, box-shadow .2s ease;
+  outline: none;
+}
+
+.reg-back:hover {
+  background: color-mix(in oklab, var(--accent) 8%, transparent);
+  border-color: color-mix(in oklab, var(--accent) 60%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 20%, transparent);
+}
+
+.reg-back:focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 35%, transparent);
+}
+
+.mode-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+
+.mode-card {
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+  box-shadow: 0 8px 24px rgba(2,6,23,.45);
+  border: 1px solid var(--border);
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+.mode-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(2,6,23,.55);
+}
+
+.mode-title {
+  color: var(--text-1);
+  margin: 12px 12px 8px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  backdrop-filter: saturate(120%) blur(6px);
+  background: var(--card-bg);
+  transition: background .18s ease;
+}
+
+.reg-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  color: var(--text-2);
+}
+
+.reg-thead {
+  background: var(--thead-bg);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  backdrop-filter: blur(4px) saturate(120%);
+}
+
+.reg-th {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-1);
+  white-space: nowrap;
+  font-weight: 600;
+  letter-spacing: .15px;
+}
+
+.reg-tbody tr:nth-child(odd) {
+  background: rgba(2,6,23,.44);
+}
+
+.reg-tbody tr:nth-child(even) {
+  background: rgba(15,23,42,.62);
+}
+
+.reg-tbody tr:hover {
+  background: color-mix(in oklab, var(--accent-strong) 14%, transparent);
+}
+
+.reg-td {
+  padding: 10px 12px;
+}
+
+.empty-cell {
+  padding: 10px 12px;
+  color: var(--text-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reg-back { transition: none; }
+  .mode-card { transition: none; }
+  .table-wrap { transition: none; }
+}
+
+@media (max-width: 640px) {
+  .reg-title { font-size: 22px; }
+  .mode-grid { grid-template-columns: 1fr; }
+}

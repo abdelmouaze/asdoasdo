@@ -51,22 +51,15 @@ header
   font-weight: bold;
 }
 
-/* Let Products.css control the products grid layout (grid + breakpoints) */
-/* Removed conflicting .products-grid flex definition here. */
-
-/* Global responsive media */
 img, video {
   max-width: 100%;
   height: auto;
 }
-
-/* Prevent unexpected text auto-zoom on mobile browsers */
 html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; width: 100%; overflow-x: hidden; }
 html, body { margin: 0; padding: 0; }
 * { box-sizing: border-box; }
 body { max-width: 100%; overflow-x: hidden; }
 
-/* Clamp all major wrappers to the viewport width to prevent horizontal scroll */
 .app,
 .main-content,
 .products-section,
@@ -80,7 +73,6 @@ footer,
   overflow-x: hidden;
 }
 
-/* Avoid iOS zooming inputs by ensuring 16px font-size or more */
 @supports (-webkit-touch-callout: none) {
   input, select, textarea { font-size: 16px; }
 }
@@ -106,7 +98,6 @@ footer,
   font-weight: bold;
 }
 
-/* Responsive Logo */
 @media (max-width: 768px) {
   .logo-container img {
     width: 40px;
@@ -121,7 +112,6 @@ footer,
     padding: 1rem;
   }
 
-  /* Prevent content from being hidden under the fixed navbar on mobile */
   .main-content {
     padding-top: 64px;
   }
@@ -130,17 +120,14 @@ footer,
     font-size: 2rem;
   }
 
-  /* Ensure home card rows wrap and take full width on phones */
   .card-row {
     flex-wrap: wrap;
     gap: 12px;
   }
-  /* Make card container full width on phones */
   .card-container { max-width: 100%; padding: 0 12px; }
 }
 
 @media (max-width: 992px) {
-  /* Products grid handled by Products.css */
 }
 .app {
   background-color: var(--background-primary);
@@ -192,7 +179,6 @@ footer,
   font-size: 0.9rem;
 }
 
-/* Add this new style for the theme toggle button */
 .theme-toggle-btn {
   padding: 0.5rem;
   border-radius: 50%;

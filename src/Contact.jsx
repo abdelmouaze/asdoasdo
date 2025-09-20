@@ -18,7 +18,6 @@ function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission here
     console.log('Form submitted:', formData);
     alert('Message sent successfully!');
     setFormData({ name: '', email: '', subject: '', message: '' });
@@ -41,12 +40,12 @@ function Contact() {
               <div className="contact-details">
                 <div className="contact-item">
                   <h3>📧 Email</h3>
-                  <p>support@moizegaming.com</p>
+                  <p>gamingmoize@gmail.com</p>
                 </div>
                 
                 <div className="contact-item">
                   <h3>📞 Phone</h3>
-                  <p>+1 (555) 123-GAME</p>
+                  <p>(+212) 714257457</p>
                 </div>
                 
                 <div className="contact-item">

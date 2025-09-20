@@ -27,7 +27,6 @@ const GamingHeader = () => {
   return (
     <header className="gaming-header">
       <div className="header-container">
-        {/* Game Selector */}
         <div className="dropdown">
           <button
             className={`dropdown-btn ${isDropdownOpen ? "active" : ""}`}
@@ -58,7 +57,6 @@ const GamingHeader = () => {
           )}
         </div>
 
-        {/* Search Bar */}
         <div className="search-bar">
           <input
             type="text"
@@ -74,7 +72,6 @@ const GamingHeader = () => {
           </button>
         </div>
 
-        {/* Login */}
         <div>
           <button className="login-btn">
             <User className="icon" />

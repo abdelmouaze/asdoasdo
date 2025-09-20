@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import './Order.css';
 
 function Order() {
-  // Load cart from localStorage to show summary
   const [cart, setCart] = useState([]);
   useEffect(() => {
     try {
@@ -14,7 +13,6 @@ function Order() {
     }
   }, []);
 
-  // Helpers to keep cart in sync when user edits quantities from the summary
   const persistCart = (next) => {
     setCart(next);
     try { localStorage.setItem('cart', JSON.stringify(next)); } catch {}
@@ -71,14 +69,12 @@ function Order() {
     if (Object.keys(eObj).length) { setErrs(eObj); return; }
     setSending(true);
     try {
-      // TODO: Replace with real API/email submission
       const payload = { customer: form, items: cart, total };
       console.log('Submitting order', payload);
       await new Promise((r) => setTimeout(r, 1200));
       alert('Commande envoyée ! Nous vous contacterons pour la confirmation.');
-      // Optionally clear cart here
-      // localStorage.removeItem('cart');
-      // setCart([]);
+      localStorage.removeItem('cart');
+      setCart([]);
       setForm({ firstName: '', lastName: '', email: '', phone: '', address: '', city: '', postalCode: '', country: '', notes: '' });
     } finally {
       setSending(false);

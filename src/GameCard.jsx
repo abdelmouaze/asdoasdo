@@ -18,7 +18,6 @@ function GameCard({title,description,image,color,icon}) {
   };
 
   const toggleExpand = (e) => {
-    // Only used on mobile via CSS; safe elsewhere
     e?.stopPropagation?.();
     setExpanded((v) => !v);
   };

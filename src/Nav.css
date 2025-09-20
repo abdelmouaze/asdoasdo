@@ -41,7 +41,6 @@
   color: #d8b4fe;
 }
 
-/* Brand (logo + text) */
 .logo-container .brand {
   display: flex;
   align-items: center;
@@ -64,7 +63,6 @@
   margin: 0;
 }
 
-/* Hamburger menu button (mobile) */
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -92,7 +90,6 @@
   align-items: center;
 }
 
-/* Tablet Responsive */
 @media (max-width: 1024px) {
   .nav {
     padding: 0.75rem 1.5rem;
@@ -105,7 +102,6 @@
   }
 }
 
-/* Mobile Responsive */
 @media (max-width: 768px) {
   .nav {
     padding: 0.75rem 1rem;
@@ -114,7 +110,6 @@
     row-gap: 8px;
   }
 
-  /* Keep links always visible inline on phones */
   .menu-toggle { display: none; }
 
   .nav-links {
@@ -211,7 +206,6 @@
   }
 }
 
-/* Animation for mobile menu */
 @keyframes slideDown {
   from {
     opacity: 0;

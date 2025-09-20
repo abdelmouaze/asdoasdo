@@ -3,7 +3,6 @@
  import "./Products.css";
 
  const Products = () => {
-  // Simple featured list for the carousel (reuse some of the products below)
   const featured = [
     {
       id: "f1",
@@ -50,7 +49,6 @@
   ];
 
 
-  // Carousel logic
   const [index, setIndex] = useState(0);
   const viewportRef = useRef(null);
   const intervalRef = useRef(null);
@@ -64,7 +62,6 @@
   const prev = () => goTo(index - 1);
 
   useEffect(() => {
-    // autoplay
     intervalRef.current = setInterval(() => {
       next();
     }, 4000);
@@ -887,7 +884,6 @@
 ];
 
 
-// Search & filter state (must come after products is defined)
 const [query, setQuery] = useState("");
 const [category, setCategory] = useState("all");
   const categories = useMemo(() => {
@@ -905,7 +901,6 @@ const [category, setCategory] = useState("all");
     });
   }, [products, query, category]);
 
-  // Cart state with persistence
   const [cartOpen, setCartOpen] = useState(false);
   const [cart, setCart] = useState(() => {
     try {
@@ -920,13 +915,11 @@ const [category, setCategory] = useState("all");
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  // Open cart if navigated with state { openCart: true }
   const location = useLocation();
   const navigate = useNavigate();
   useEffect(() => {
     if (location.state && location.state.openCart) {
       setCartOpen(true);
-      // clear the flag so refresh doesn't reopen
       navigate('.', { replace: true, state: {} });
     }
   }, [location.state, navigate]);
@@ -954,17 +947,13 @@ const [category, setCategory] = useState("all");
   const clearCart = () => setCart([]);
 
   const cartCount = cart.reduce((sum, i) => sum + i.qty, 0);
-  // Helper to parse numeric amount from price string like "1,200 MAD"
   const parsePrice = (p) => Number(String(p).replace(/[^0-9.]/g, "")) || 0;
   const cartTotal = cart.reduce((sum, i) => sum + parsePrice(i.price) * i.qty, 0);
 
-  // Commander now navigates to the dedicated order page
   const goToCheckout = async (product) => {
-    // First add product to cart
     addToCart(product);
     
     try {
-      // Get current cart items
       const checkoutItems = cart.map(item => ({
         title: item.title,
         price: item.price,
@@ -973,7 +962,7 @@ const [category, setCategory] = useState("all");
       }));
       
       console.log('Sending items to checkout:', checkoutItems);
-      
+    
       const response = await fetch('http://localhost:3000/api/create-checkout-session', {
         method: 'POST',
         headers: {
@@ -999,7 +988,6 @@ const [category, setCategory] = useState("all");
     <div style={{ paddingTop: '107px' }}>
     <section id="products" className="products-section">
       <div className="container">
-        {/* Hero Carousel */}
         <div className="products-hero">
           <button aria-label="Précédent" className="carousel-btn left" onClick={prev}>
             ‹
@@ -1023,8 +1011,6 @@ const [category, setCategory] = useState("all");
           </button>
         </div>
 
-        {/* Title Section */
-        }
         <div className="title-section">
           <h2>
             Nos <span className="gradient-text">Produits</span>
@@ -1032,10 +1018,8 @@ const [category, setCategory] = useState("all");
           <p>Découvrez notre sélection de PC gaming et composants premium</p>
         </div>
 
-        {/* Toolbar: Category Dropdown + Rounded Search + Cart Button */}
         <div className="products-toolbar">
           <div className="searchbar">
-            {/* Categories dropdown button */}
             <CategoriesMenu
               categories={categories}
               current={category}
@@ -1063,8 +1047,6 @@ const [category, setCategory] = useState("all");
           </button>
         </div>
 
-        {/* Products Grid */}
-        {/* Visible category chips above the grid */}
         <div className="category-chips-row" aria-label="Catégories">
           {categories.map((c) => (
             <button
@@ -1077,24 +1059,19 @@ const [category, setCategory] = useState("all");
           ))}
         </div>
 
-        {/* Products Grid */}
         <div id="products-grid" className="products-grid">
           {filtered.map((product) => (
             <div key={product.id} className="product-card">
 
 
-              {/* Product Image */}
               <div className="image-container">
                 <img src={product.image} alt={product.title} />
               </div>
-
-              {/* Product Info */}
               <div className="info">
                 <p className="category">{product.category}</p>
                 <h3>{product.title}</h3>
               </div>
 
-              {/* Specs */}
               <div className="specs">
                 {product.specs.map((spec, index) => (
                   <div key={index} className="spec-item">
@@ -1104,7 +1081,6 @@ const [category, setCategory] = useState("all");
                 ))}
               </div>
 
-              {/* Price and Button */}
               <div className="price-row">
                 <div className="price">{product.price}</div>
                 <div className="actions">
@@ -1115,18 +1091,17 @@ const [category, setCategory] = useState("all");
                   >
                     Voir détails →
                   </Link>
-                  <button className="add-btn" onClick={() => addToCart(product)}>Ajouter et payer</button>
+                  <button className="add-btn" onClick={() => addToCart(product)}>Ajouter</button>
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* CTA Button */}
         <div className="cta-container">
           <button className="cta-btn">Voir tous nos produits →</button>
         </div>
-        {/* Cart Drawer */}
+
         <aside className={`cart-drawer${cartOpen ? " open" : ""}`} aria-hidden={!cartOpen}>
           <div className="cart-header">
             <h3>Votre Panier</h3>
@@ -1161,7 +1136,6 @@ const [category, setCategory] = useState("all");
             </div>
             <div className="footer-actions">
               <button className="clear" onClick={clearCart}>Vider</button>
-  // In your Products.jsx file, the Commander button event handler has issues:
 <button 
   className="checkout" 
   disabled={cart.length === 0} 
@@ -1187,7 +1161,6 @@ const [category, setCategory] = useState("all");
   window.location.href = url;
 } else {
   console.error('Received undefined URL from server');
-  // Show error message to user
 }
     } catch (error) {
       console.error('Error:', error);
@@ -1205,7 +1178,6 @@ const [category, setCategory] = useState("all");
   );
 };
 
-// Categories dropdown component (inline to keep file self-contained)
 function CategoriesMenu({ categories, current, onSelect, count = 0 }) {
   const [open, setOpen] = useState(false);
   useEffect(() => {

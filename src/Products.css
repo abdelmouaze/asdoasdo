@@ -98,7 +98,6 @@
 @media (max-width: 600px) {
   .carousel-slide { height: 220px; }
 }
-/* Section */
 .products-section, .products-section * { box-sizing: border-box; }
 .products-section {
   padding: 80px 0;
@@ -238,7 +237,7 @@
     width: 36px; height: 36px; padding: 0;
     border-radius: 999px;
     display: inline-grid; place-items: center;
-    font-size: 0; /* hide text */
+    font-size: 0; 
   }
   .add-btn::after { content: '🛒'; font-size: 18px; }
 }
@@ -804,7 +803,6 @@
   .search-field { min-width: 0; width: 100%; }
 }
 
-/* ===== Checkout Modal ===== */
 .modal-overlay {
   position: fixed;
   inset: 0;

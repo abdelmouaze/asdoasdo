@@ -68,7 +68,6 @@
   box-shadow: 0 8px 25px rgba(0,0,0,0.7);
 }
 
-/* Tablet Responsive */
 @media (max-width: 1024px) {
   .game-card {
     max-width: 340px;
@@ -90,7 +89,6 @@
   }
 }
 
-/* Mobile Responsive */
 @media (max-width: 768px) {
   .game-card {
     max-width: 100%;
@@ -126,7 +124,6 @@
   }
 }
 
-/* Phone compact layout (most phones up to 640px) */
 @media (max-width: 640px) {
   .game-card {
     border-radius: 8px;
@@ -180,7 +177,7 @@
   }
   
   .card-list {
-    display: none; /* hidden by default on mobile */
+    display: none;
   }
   .game-card.expanded .card-list {
     display: block;
@@ -198,7 +195,6 @@
   }
 }
 
-/* Extra Small Mobile */
 @media (max-width: 360px) {
   .card-header {
     height: 66px;

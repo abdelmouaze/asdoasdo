@@ -22,7 +22,6 @@
   position: relative;
 }
 
-/* Add decorative line under headings */
 .footer-section h4::after {
   content: '';
   position: absolute;
@@ -54,7 +53,6 @@
   color: #d8b4fe;
 }
 
-/* Improve social links */
 .social-links {
   display: flex;
   gap: 0.8rem;
@@ -76,7 +74,6 @@
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-/* Facebook */
 .social-links a[aria-label="Facebook"] {
   background: #1877f2;
 }
@@ -86,7 +83,6 @@
   box-shadow: 0 0 15px rgba(24, 119, 242, 0.5);
 }
 
-/* Twitter */
 .social-links a[aria-label="X (Twitter)"] {
   background: #000000;
 }
@@ -96,7 +92,6 @@
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
 
-/* Instagram */
 .social-links a[aria-label="Instagram"] {
   background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
 }
@@ -106,7 +101,6 @@
   transform: scale(1.1);
 }
 
-/* YouTube */
 .social-links a[aria-label="YouTube"] {
   background: #ff0000;
 }
@@ -116,7 +110,6 @@
   box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
 }
 
-/* Twitch */
 .social-links a[aria-label="Twitch"] {
   background: #9146ff;
 }
@@ -126,7 +119,6 @@
   box-shadow: 0 0 15px rgba(145, 70, 255, 0.5);
 }
 
-/* Discord */
 .social-links a[aria-label="Discord"] {
   background: #5865f2;
 }
@@ -136,7 +128,6 @@
   box-shadow: 0 0 15px rgba(88, 101, 242, 0.5);
 }
 
-/* Email */
 .social-links a[aria-label="Email"] {
   background: #ea4335;
 }
@@ -146,7 +137,6 @@
   box-shadow: 0 0 15px rgba(234, 67, 53, 0.5);
 }
 
-/* Hover effects for all icons */
 .social-links a:hover {
   transform: translateY(-3px) scale(1.1);
   color: white;
@@ -187,7 +177,6 @@
   filter: brightness(1.05);
 }
 
-/* Add payment methods */
 .payment-methods {
   display: flex;
   gap: 1rem;
@@ -202,10 +191,20 @@
 }
 
 .payment-methods i:hover {
-  color: #d8b4fe;
+  filter: brightness(1.1);
 }
 
-/* Improve footer bottom */
+.payment-methods i.fa-cc-visa { color: #1A1F71; }
+.payment-methods i.fa-cc-mastercard {
+  background: linear-gradient(90deg, #EB001B 0%, #F79E1B 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.payment-methods i.fa-cc-paypal { color: #0070BA; }
+.payment-methods i.fa-cc-amex { color: #2E77BC; }
+.payment-methods i.fa-apple-pay { color: #000000; }
+
 .footer-bottom {
   text-align: center;
   margin-top: 3rem;

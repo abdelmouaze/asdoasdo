@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./PUBG.css";
 
-// Simple helpers
 const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 const phoneRe = /^[0-9+()\s-]{6,}$/;
 
@@ -51,7 +50,6 @@ export default function PUBGBRRegistration({ eventName = "PUBG Morocco Cup 2025:
 
     try {
       setSubmitting(true);
-      // Simulate async submit and persist locally for demo
       await new Promise((res) => setTimeout(res, 800));
       const payload = { id: crypto.randomUUID?.() || String(Date.now()), eventName, gameTitle, ...form, createdAt: new Date().toISOString() };
       const raw = localStorage.getItem("pubg_registrations");
@@ -59,7 +57,6 @@ export default function PUBGBRRegistration({ eventName = "PUBG Morocco Cup 2025:
       list.push(payload);
       localStorage.setItem("pubg_registrations", JSON.stringify(list));
       setSuccessMsg("Inscription envoyée avec succès !");
-      // Optional: reset minimal fields but keep name for multiple entries
       setForm((s) => ({ ...s, email: "", phone: "", ingameID: "" }));
     } catch (err) {
       setSuccessMsg("");

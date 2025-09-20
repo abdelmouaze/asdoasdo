@@ -57,7 +57,6 @@ function Footer() {
             <li><Link to="/about">About</Link></li>
             <li><Link to="/products">Products</Link></li>
             <li><Link to="/contact">Contact</Link></li>
-            {/* Removed FAQ link (no route defined) */}
           </ul>
         </div>
 
@@ -82,12 +81,11 @@ function Footer() {
             {/* <p><i className="fas fa-map-marker-alt"></i> 123 Gaming Street</p> */}
           </div>
           <div className="payment-methods">
-            {/* <i className="fab fa-cc-visa"></i>
+            <i className="fab fa-cc-visa"></i>
             <i className="fab fa-cc-mastercard"></i>
             <i className="fab fa-cc-paypal"></i>
             <i className="fab fa-cc-amex"></i>
-            <i className="fab fa-bitcoin"></i>
-            <i className="fab fa-apple-pay"></i> */}
+            <i className="fab fa-apple-pay"></i>
           </div>
         </div>
       </div>

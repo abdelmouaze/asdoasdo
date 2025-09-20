@@ -13,7 +13,6 @@
   flex-wrap: wrap;
 }
 
-/* Mobile: stack as vertical list like the screenshot */
 @media (max-width: 600px) {
   .card-row {
     flex-direction: column;

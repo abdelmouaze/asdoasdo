@@ -1,5 +1,7 @@
 import React, { useMemo } from 'react';
 import { useParams, Link, useLocation } from 'react-router-dom';
+import { data as cardData } from './cardData';
+import './RegistrationTable.css';
 
 function fmtDate(iso) {
   try {
@@ -11,62 +13,97 @@ function fmtDate(iso) {
 export default function RegistrationTable() {
   const { eventName } = useParams();
   const location = useLocation();
-  const decodedEventName = decodeURIComponent(eventName || '');
+  const decodedEventName = decodeURIComponent(eventName || '').trim();
 
-  // For now we persist registrations in localStorage under this key from PUBGBRRegistration.jsx
   const rows = useMemo(() => {
     try {
       const raw = localStorage.getItem('pubg_registrations');
       const list = raw ? JSON.parse(raw) : [];
       if (!decodedEventName) return list;
-      return list.filter((r) => (r.eventName || '').toLowerCase() === decodedEventName.toLowerCase());
+      const target = decodedEventName.toLowerCase().trim();
+      return list.filter((r) => (r.gameTitle || '').toLowerCase().trim() === target);
     } catch {
       return [];
     }
   }, [decodedEventName, location.key]);
 
-  return ( 
-    <div style={{ paddingTop: '107px' }}>
-    <section style={{ padding: '32px 16px' }}>
-      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 12 }}>
-          <h1 style={{ color: '#fff', margin: 0 }}>Registrations — {decodedEventName || 'All'}</h1>
-          <Link to="/" style={{ color: '#a78bfa', textDecoration: 'none', border: '1px solid rgba(167,139,250,.4)', padding: '8px 12px', borderRadius: 8 }}>← Back</Link>
-        </div>
+  const flatCards = useMemo(() => cardData.flat(), []);
+  const selectedCard = useMemo(() => {
+    const target = (decodedEventName || '').toLowerCase().trim();
+    return flatCards.find(c => (c.title || '').toLowerCase().trim() === target);
+  }, [flatCards, decodedEventName]);
 
-        {rows.length === 0 ? (
-          <p style={{ color: '#cbd5e1' }}>No registrations found yet for this game/mode.</p>
-        ) : (
-          <div style={{ overflowX: 'auto', border: '1px solid rgba(148,163,184,.25)', borderRadius: 12 }}>
-            <table style={{ width: '100%', borderCollapse: 'separate', borderSpacing: 0, color: '#e5e7eb' }}>
-              <thead style={{ background: 'rgba(30,41,59,.6)' }}>
-                <tr>
-                  {['#','Full Name','Email','Phone','Country','Team','In-game ID','Rank','Role','Created'].map((h) => (
-                    <th key={h} style={{ textAlign: 'left', padding: '10px 12px', borderBottom: '1px solid rgba(148,163,184,.25)', color: '#fff' }}>{h}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {rows.map((r, idx) => (
-                  <tr key={r.id || idx} style={{ background: idx % 2 ? 'rgba(15,23,42,.6)' : 'rgba(2,6,23,.4)' }}>
-                    <td style={{ padding: '10px 12px' }}>{idx + 1}</td>
-                    <td style={{ padding: '10px 12px' }}>{r.fullName}</td>
-                    <td style={{ padding: '10px 12px' }}>{r.email}</td>
-                    <td style={{ padding: '10px 12px' }}>{r.phone}</td>
-                    <td style={{ padding: '10px 12px' }}>{r.country}</td>
-                    <td style={{ padding: '10px 12px' }}>{r.teamName}</td>
-                    <td style={{ padding: '10px 12px' }}>{r.ingameID}</td>
-                    <td style={{ padding: '10px 12px' }}>{r.rank}</td>
-                    <td style={{ padding: '10px 12px' }}>{r.role}</td>
-                    <td style={{ padding: '10px 12px' }}>{fmtDate(r.createdAt)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+  const modeList = useMemo(() => {
+    if (selectedCard && Array.isArray(selectedCard.description)) {
+      return selectedCard.description;
+    }
+    return Array.from(new Set(rows.map(r => (r.eventName || 'Mode').trim())));
+  }, [selectedCard, rows]);
+
+  const extractShortMode = (label) => {
+    const s = String(label || '');
+    const idx = s.lastIndexOf(':');
+    const short = idx >= 0 ? s.slice(idx + 1) : s;
+    return short.trim();
+  };
+
+  const groups = modeList.map((modeLabel) => {
+    const normFull = (modeLabel || '').toLowerCase().trim();
+    const normShort = extractShortMode(modeLabel).toLowerCase();
+    const list = rows.filter(r => {
+      const ev = (r.eventName || '').toLowerCase().trim();
+      return ev === normFull || ev === normShort;
+    });
+    return [modeLabel, list];
+  });
+
+  return ( 
+    <div className="reg-page">
+      <section className="reg-section">
+        <div className="reg-container">
+          <div className="reg-header">
+            <h1 className="reg-title">Registrations — {decodedEventName || 'All'}</h1>
+            <Link to="/" className="reg-back">← Back</Link>
           </div>
-        )}
-      </div>
-    </section>
+
+          {modeList.length === 0 ? (
+            <p className="empty-cell">No modes found for this game.</p>
+          ) : (
+            <div className="mode-grid">
+              {groups.map(([modeName, list]) => (
+                <div className="mode-card" key={modeName}>
+                  <h2 className="mode-title">{modeName}</h2>
+                  <div className="table-wrap">
+                    <table className="reg-table">
+                      <thead className="reg-thead">
+                        <tr>
+                          {['#','Player ID','Player Name'].map((h) => (
+                            <th key={h} className="reg-th">{h}</th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody className="reg-tbody">
+                        {list.map((r, idx) => (
+                          <tr key={r.id || idx}>
+                            <td className="reg-td">{idx + 1}</td>
+                            <td className="reg-td">{r.ingameID}</td>
+                            <td className="reg-td">{r.fullName}</td>
+                          </tr>
+                        ))}
+                        {list.length === 0 && (
+                          <tr>
+                            <td colSpan={3} className="empty-cell">No registrations yet for this mode.</td>
+                          </tr>
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
     </div>
   );
 }

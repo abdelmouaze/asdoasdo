@@ -8,20 +8,18 @@ export default function ProductDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // Prefer state when navigating from list; merge with store to pick up gallery/description
   const storeProduct = getProductById(id);
   const base = state?.product || storeProduct;
   const product = base && storeProduct
     ? { ...storeProduct, ...base, gallery: base.gallery ?? storeProduct.gallery }
     : base;
 
-  // Build normalized images list from main image + gallery
   const images = useMemo(() => {
     if (!product) return [];
     const normalize = (s) => {
       if (!s) return s;
       if (s.startsWith("http") || s.startsWith("/")) return s;
-      return `/${s}`; // from public/
+      return `/${s}`; 
     };
     const list = [product.image, ...(product.gallery ?? [])]
       .filter(Boolean)
@@ -35,7 +33,6 @@ export default function ProductDetails() {
     setMainSrc(images[0] ?? "");
   }, [images]);
 
-  // Add to cart (persist in localStorage, same shape as Products page)
   const [added, setAdded] = useState(false);
   const addToCart = () => {
     try {
@@ -50,7 +47,6 @@ export default function ProductDetails() {
       localStorage.setItem("cart", JSON.stringify(cart));
       setAdded(true);
       setTimeout(() => setAdded(false), 1500);
-      // Open cart on products page
       navigate('/products', { state: { openCart: true } });
     } catch (e) {
       console.error("Failed to update cart", e);
@@ -77,7 +73,6 @@ export default function ProductDetails() {
     <div style={{ paddingTop: '107px' }}>
     <section className="product-details-section">
       <div className="container details-layout">
-        {/* Gallery */}
         <div className="gallery">
           <div className="main-image">
             {mainSrc ? (
@@ -99,7 +94,6 @@ export default function ProductDetails() {
           ) : null}
         </div>
 
-        {/* Info */}
         <div className="info-panel">
           <div className="badge-row">
             <span className="badge">{product.badge}</span>
@@ -157,7 +151,6 @@ export default function ProductDetails() {
         </div>
       </div>
 
-      {/* Related / reassurance block */}
       <div className="container details-extra">
         <div className="info-cards">
           <div className="info-card">

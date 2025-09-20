@@ -20,7 +20,7 @@
 }
 
 .hero-content .highlight {
-  color: #09a384; /* سماوي باش يبان */
+  color: #09a384;
 }
 
 .hero-content p {
@@ -29,7 +29,6 @@
   color: #cbd5e1;
 }
 
-/* Background layers */
 .hero-background {
   position: absolute;
   inset: 0;
@@ -77,7 +76,6 @@
               linear-gradient(180deg, rgba(2,6,23,0.2) 0%, rgba(2,6,23,0.7) 60%, #0b1220 100%);
 }
 
-/* Content */
 .hero-content {
   position: relative;
   z-index: 1;
@@ -172,7 +170,6 @@
   background: rgba(148,163,184,0.12);
 }
 
-/* Floating decorative cards */
 .hero-decoration {
   position: absolute;
   inset: 0;
@@ -207,7 +204,6 @@
 @keyframes float2 { 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(12px) } }
 @keyframes float3 { 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(-8px) } }
 
-/* Responsive Design */
 @media (max-width: 1200px) {
   .hero-content { max-width: 800px; }
   .floating-card { width: 200px; height: 140px; }
