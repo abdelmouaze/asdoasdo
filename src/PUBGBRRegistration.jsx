@@ -50,12 +50,29 @@ export default function PUBGBRRegistration({ eventName = "PUBG Morocco Cup 2025:
 
     try {
       setSubmitting(true);
-      await new Promise((res) => setTimeout(res, 800));
+      await new Promise((res) => setTimeout(res, 200));
       const payload = { id: crypto.randomUUID?.() || String(Date.now()), eventName, gameTitle, ...form, createdAt: new Date().toISOString() };
-      const raw = localStorage.getItem("pubg_registrations");
-      const list = raw ? JSON.parse(raw) : [];
-      list.push(payload);
-      localStorage.setItem("pubg_registrations", JSON.stringify(list));
+
+      // Try backend first
+      let ok = false;
+      try {
+        const resp = await fetch('http://localhost:3000/api/registrations', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        ok = resp.ok;
+      } catch {}
+
+      // Fallback to localStorage if backend is unavailable
+      if (!ok) {
+        try {
+          const raw = localStorage.getItem('pubg_registrations');
+          const list = raw ? JSON.parse(raw) : [];
+          list.push(payload);
+          localStorage.setItem('pubg_registrations', JSON.stringify(list));
+        } catch {}
+      }
       setSuccessMsg("Inscription envoyée avec succès !");
       setForm((s) => ({ ...s, email: "", phone: "", ingameID: "" }));
     } catch (err) {

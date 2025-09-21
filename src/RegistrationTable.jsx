@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect, useState } from 'react';
 import { useParams, Link, useLocation } from 'react-router-dom';
 import { data as cardData } from './cardData';
 import './RegistrationTable.css';
@@ -15,16 +15,36 @@ export default function RegistrationTable() {
   const location = useLocation();
   const decodedEventName = decodeURIComponent(eventName || '').trim();
 
-  const rows = useMemo(() => {
-    try {
-      const raw = localStorage.getItem('pubg_registrations');
-      const list = raw ? JSON.parse(raw) : [];
-      if (!decodedEventName) return list;
-      const target = decodedEventName.toLowerCase().trim();
-      return list.filter((r) => (r.gameTitle || '').toLowerCase().trim() === target);
-    } catch {
-      return [];
+  const [rows, setRows] = useState([]);
+
+  useEffect(() => {
+    let cancelled = false;
+    async function load() {
+      // Try backend first
+      try {
+        const qs = decodedEventName ? `?game=${encodeURIComponent(decodedEventName)}` : '';
+        const res = await fetch(`http://localhost:3000/api/registrations${qs}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (!cancelled && data && Array.isArray(data.items)) {
+            setRows(data.items);
+            return;
+          }
+        }
+      } catch {}
+      // Fallback to localStorage
+      try {
+        const raw = localStorage.getItem('pubg_registrations');
+        const list = raw ? JSON.parse(raw) : [];
+        const target = (decodedEventName || '').toLowerCase().trim();
+        const filtered = target ? list.filter((r) => (r.gameTitle || '').toLowerCase().trim() === target) : list;
+        if (!cancelled) setRows(filtered);
+      } catch {
+        if (!cancelled) setRows([]);
+      }
     }
+    load();
+    return () => { cancelled = true; };
   }, [decodedEventName, location.key]);
 
   const flatCards = useMemo(() => cardData.flat(), []);
