@@ -8,12 +8,12 @@ function Footer() {
         <div className="footer-section">
           <div className="footer-logo">
             <img 
-              src="/Abdo.png" 
+              src="/ERER.png" 
               alt="Moize Gaming Logo"
               width="36"
               height="36"
             />
-            <h4>Moize Gaming</h4>
+            <h4>Shadow Vortex</h4>
           </div>
           <p>Your premier gaming gear destination</p>
          {/* <div className="social-links">
@@ -26,25 +26,25 @@ function Footer() {
         <a href="#steam"><i className="fab fa-steam"></i></a>
       </div> */}
       <div className="social-links">
-        <a href="https://www.facebook.com/share/19p4zgsZzg/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <a href="https://www.facebook.com/share/16yahwVXGx/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
          <i className="fab fa-facebook-f"></i>
         </a>
-        <a href="https://twitter.com/MoizeGaming/" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
-          <i className="fab fa-twitter"></i>
+        <a href="https://twitter.com/Shadow_VortexEs" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+          <i className="fab fa-x-twitter"></i>
         </a>
-        <a href="https://www.instagram.com/Moize_Gaming/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <a href="https://www.instagram.com/shadow_vortex__1/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
           <i className="fab fa-instagram"></i>
         </a>
-        <a href="https://www.youtube.com/@Moize_Gaming/" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <a href="https://youtube.com/@shadowvortex-esports?si=ZWzheNSUNBjdDGD1" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
           <i className="fab fa-youtube"></i>
         </a>
-        <a href="https://www.twitch.tv/moize_gaming/" target="_blank" rel="noopener noreferrer" aria-label="Twitch">
+        <a href="https://www.twitch.tv/shadow_vortexes/" target="_blank" rel="noopener noreferrer" aria-label="Twitch">
           <i className="fab fa-twitch"></i>
         </a>
-        <a href="https://discord.gg/hMQmYYyK" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+        <a href="https://discord.gg/h7czXMnr" target="_blank" rel="noopener noreferrer" aria-label="Discord">
           <i className="fab fa-discord"></i>
         </a>
-        <a href="mailto:gamingmoize@gmail.com" aria-label="Email">
+        <a href="mailto:shadowvortex433@gmail.com" aria-label="Email">
           <i className="fas fa-envelope"></i>
         </a>
       </div>
@@ -74,7 +74,7 @@ function Footer() {
         </div>
 
         <div className="footer-section">
-          <h4>Contact </h4> 
+          <h4>Contact & Payment</h4> 
           <div className="contact-info">
             <p><i className="fas fa-envelope"></i>gamingmoize@gmail.com</p>
             <p><i className="fas fa-phone"></i> (+212) 714257457</p>

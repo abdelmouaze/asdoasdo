@@ -8,10 +8,10 @@ function Nav() {
       <div className="logo-container">
         <Link to="/" className="brand" onClick={() => setOpen(false)}>
           <img 
-            src="/Abdo.png" 
+            src="/ERER.png" 
             alt="Moize Gaming Logo" 
           />
-          <h2>Moize Gaming</h2>
+          <h2>Shadow Vortex</h2>
         </Link>
       </div>
 
