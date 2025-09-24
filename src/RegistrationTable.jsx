@@ -3,6 +3,8 @@ import { useParams, Link, useLocation } from 'react-router-dom';
 import { data as cardData } from './cardData';
 import './RegistrationTable.css';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+
 function fmtDate(iso) {
   try {
     const d = new Date(iso);
@@ -20,10 +22,9 @@ export default function RegistrationTable() {
   useEffect(() => {
     let cancelled = false;
     async function load() {
-      // Try backend first
       try {
         const qs = decodedEventName ? `?game=${encodeURIComponent(decodedEventName)}` : '';
-        const res = await fetch(`http://localhost:3000/api/registrations${qs}`);
+        const res = await fetch(`${API_URL}/api/registrations${qs}`);
         if (res.ok) {
           const data = await res.json();
           if (!cancelled && data && Array.isArray(data.items)) {
@@ -32,7 +33,6 @@ export default function RegistrationTable() {
           }
         }
       } catch {}
-      // Fallback to localStorage
       try {
         const raw = localStorage.getItem('pubg_registrations');
         const list = raw ? JSON.parse(raw) : [];

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import "./PUBG.css";
 
+// Base API URL: use Vite env in production, fallback to localhost in dev
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
 const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 const phoneRe = /^[0-9+()\s-]{6,}$/;
 
@@ -56,7 +59,7 @@ export default function PUBGBRRegistration({ eventName = "PUBG Morocco Cup 2025:
       // Try backend first
       let ok = false;
       try {
-        const resp = await fetch('http://localhost:3000/api/registrations', {
+        const resp = await fetch(`${API_URL}/api/registrations`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
@@ -163,7 +166,7 @@ export default function PUBGBRRegistration({ eventName = "PUBG Morocco Cup 2025:
           <button
             type="button"
             className="reset-btn"
-            onClick={() => setForm({ fullName:"", email:"", phone:"", country:"", teamName:"", ingameID:"", rank:"", role:"", agree:false })}
+            onClick={() => setForm({ fullName:"", email:"", phone:"", country:"", ingameName:"", ingameID:"", rank:"", role:"", agree:false })}
           >
             Reset
           </button>

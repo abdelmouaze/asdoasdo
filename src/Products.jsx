@@ -2,6 +2,9 @@
  import { Link, useLocation, useNavigate } from "react-router-dom";
  import "./Products.css";
 
+ // Base API URL from env (Vite) with localhost fallback for dev
+ const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
  const Products = () => {
   const featured = [
     {
@@ -963,7 +966,7 @@ const [category, setCategory] = useState("all");
       
       console.log('Sending items to checkout:', checkoutItems);
     
-      const response = await fetch('http://localhost:3000/api/create-checkout-session', {
+      const response = await fetch(`${API_URL}/api/create-checkout-session`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -1148,7 +1151,7 @@ const [category, setCategory] = useState("all");
         quantity: item.qty
       }));
       
-      const response = await fetch('http://localhost:3000/api/create-checkout-session', {  // Corrected URL
+      const response = await fetch(`${API_URL}/api/create-checkout-session`, {  // Uses env-based URL
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
