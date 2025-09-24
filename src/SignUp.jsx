@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './Auth.css';
 
+// Base API URL: use Vite env in production, fallback to localhost in dev
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+
 export default function SignUp() {
   const navigate = useNavigate();
   const [form, setForm] = useState({ name: '', email: '', password: '', confirm: '' });
@@ -29,7 +32,7 @@ export default function SignUp() {
     }
     try {
       setLoading(true);
-      const res = await fetch('http://localhost:3000/api/auth/register', {
+      const res = await fetch(`${API_URL}/api/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: form.email, password: form.password, name: form.name }),
