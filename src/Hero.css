@@ -20,7 +20,7 @@
 }
 
 .hero-content .highlight {
-  color: #09a384;
+  color: #770076;
 }
 
 .hero-content p {
@@ -196,7 +196,7 @@
   filter: saturate(1.1) contrast(1.05);
 }
 
-.card-1 { top: 12%; left: 8%; animation: float1 9s ease-in-out infinite; }
+.card-1 { top: 13%; left: 1%; animation: float1 9s ease-in-out infinite; }
 .card-2 { bottom: 10%; right: 7%; animation: float2 10s ease-in-out infinite; }
 .card-3 { top: 18%; right: 6%; animation: float3 11s ease-in-out infinite; }
 

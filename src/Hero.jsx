@@ -49,7 +49,7 @@ function Hero() {
         </div>
         
         <h1>
-          Bienvenue chez <span className="highlight">Moize</span>
+          Bienvenue chez <span className="highlight">Shadow Vortex</span>
         </h1>
         
         <p className="hero-subtitle">
