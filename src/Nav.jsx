@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Nav.css';
 function Nav() {
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState(null);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const userMenuRef = useRef(null);
 
   useEffect(() => {
     try {
@@ -17,7 +19,34 @@ function Nav() {
     localStorage.removeItem('auth_user');
     setUser(null);
     setOpen(false);
+    setUserMenuOpen(false);
   };
+
+  // Close user dropdown on outside click
+  useEffect(() => {
+    function onDocClick(e) {
+      if (!userMenuRef.current) return;
+      if (!userMenuRef.current.contains(e.target)) setUserMenuOpen(false);
+    }
+    document.addEventListener('click', onDocClick);
+    return () => document.removeEventListener('click', onDocClick);
+  }, []);
+
+  const displayName = (() => {
+    if (!user) return '';
+    const base = (user.name || user.email || '').trim();
+    if (!base) return '';
+    return base.charAt(0).toUpperCase() + base.slice(1);
+  })();
+
+  const initial = (() => {
+    if (!user) return 'U';
+    const fromName = (user.name || '').trim();
+    const fromEmail = (user.email || '').trim();
+    const base = fromName || fromEmail;
+    return (base[0] || 'U').toUpperCase();
+  })();
+
   return (
     <nav className="nav">
       <div className="logo-container">
@@ -56,14 +85,28 @@ function Nav() {
             </li>
           </>
         ) : (
-          <>
-            <li style={{ pointerEvents: 'none', opacity: .9 }}>
-              {user.name || user.email}
-            </li>
-            <li>
-              <button className="btn btn-outline" onClick={logout}>Logout</button>
-            </li>
-          </>
+          <li className="user-menu" ref={userMenuRef}>
+            <button
+              className={`user-trigger${userMenuOpen ? ' active' : ''}`}
+              onClick={() => setUserMenuOpen(v => !v)}
+              aria-haspopup="menu"
+              aria-expanded={userMenuOpen}
+            >
+              {user?.avatarUrl ? (
+                <img className="avatar-img" src={user.avatarUrl} alt={displayName} />
+              ) : (
+                <span className="avatar" aria-hidden>{initial}</span>
+              )}
+              <span className="user-name">{displayName}</span>
+              <svg className="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            {userMenuOpen && (
+              <div className="user-dropdown" role="menu">
+                <Link to="/profile" className="dropdown-item" role="menuitem" onClick={() => setUserMenuOpen(false)}>Profile</Link>
+                <button className="dropdown-item danger" role="menuitem" onClick={logout}>Logout</button>
+              </div>
+            )}
+          </li>
         )}
       </ul>
       

@@ -10,6 +10,7 @@ import Order from './Order';
 import Cancel from './Cancel';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
+import Profile from './Profile';
 import './App.css';
 import './Nav.css';
 import './Footer.css';
@@ -42,6 +43,7 @@ function App() {
               <Route path="/cancel" element={<Cancel />} />
               <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
+              <Route path="/profile" element={<Profile />} />
               <Route path="/event/:eventName" element={<EventPage />} />
               <Route path="/event/:eventName/registrations" element={<RegistrationTable />} />
             </Routes>

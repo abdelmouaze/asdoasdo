@@ -5,42 +5,36 @@ import './RegistrationTable.css';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
-function fmtDate(iso) {
-  try {
-    const d = new Date(iso);
-    return d.toLocaleString();
-  } catch { return iso || ''; }
-}
-
 export default function RegistrationTable() {
   const { eventName } = useParams();
   const location = useLocation();
   const decodedEventName = decodeURIComponent(eventName || '').trim();
 
   const [rows, setRows] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let cancelled = false;
     async function load() {
+      setLoading(true);
       try {
         const qs = decodedEventName ? `?game=${encodeURIComponent(decodedEventName)}` : '';
         const res = await fetch(`${API_URL}/api/registrations${qs}`);
-        if (res.ok) {
+        if (!cancelled && res.ok) {
           const data = await res.json();
-          if (!cancelled && data && Array.isArray(data.items)) {
+          if (data && Array.isArray(data.items)) {
             setRows(data.items);
-            return;
+          } else {
+            setRows([]);
           }
+        } else if (!cancelled) {
+          setRows([]);
         }
-      } catch {}
-      try {
-        const raw = localStorage.getItem('pubg_registrations');
-        const list = raw ? JSON.parse(raw) : [];
-        const target = (decodedEventName || '').toLowerCase().trim();
-        const filtered = target ? list.filter((r) => (r.gameTitle || '').toLowerCase().trim() === target) : list;
-        if (!cancelled) setRows(filtered);
-      } catch {
+      } catch (err) {
+        console.error("Failed to fetch registrations:", err);
         if (!cancelled) setRows([]);
+      } finally {
+        if (!cancelled) setLoading(false);
       }
     }
     load();
@@ -77,7 +71,7 @@ export default function RegistrationTable() {
     return [modeLabel, list];
   });
 
-  return ( 
+  return (
     <div className="reg-page">
       <section className="reg-section">
         <div className="reg-container">
@@ -86,7 +80,9 @@ export default function RegistrationTable() {
             <Link to="/" className="reg-back">← Back</Link>
           </div>
 
-          {modeList.length === 0 ? (
+          {loading ? (
+            <p className="empty-cell">Loading...</p>
+          ) : modeList.length === 0 ? (
             <p className="empty-cell">No modes found for this game.</p>
           ) : (
             <div className="mode-grid">
@@ -97,7 +93,7 @@ export default function RegistrationTable() {
                     <table className="reg-table">
                       <thead className="reg-thead">
                         <tr>
-                          {['#','Player ID','Player Name'].map((h) => (
+                          {['#', 'Player ID', 'Player Name'].map((h) => (
                             <th key={h} className="reg-th">{h}</th>
                           ))}
                         </tr>

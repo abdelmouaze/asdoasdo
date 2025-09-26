@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import './Cancel.css';
 
 function Cancel() {
   const navigate = useNavigate();
@@ -9,21 +10,17 @@ function Cancel() {
   }, []);
 
   return (
-    <div style={{ paddingTop: '120px' }}>
-      <section className="container" style={{ textAlign: 'center', padding: '40px 20px' }}>
-        <h1 style={{ marginBottom: 12 }}>Paiement annulé</h1>
-        <p style={{ color: 'var(--muted-foreground)', marginBottom: 24 }}>
+    <div className="cancel-page" style={{ paddingTop: '120px' }}>
+      <section className="cancel-card container">
+        <div className="cancel-icon" aria-hidden>✖</div>
+        <h1 className="cancel-title">Paiement annulé</h1>
+        <p className="cancel-sub">
           Votre paiement a été annulé. Vous pouvez revenir à la boutique pour continuer vos achats
           ou réessayer le paiement plus tard.
         </p>
-
-        <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
-          <Link className="button" to="/products">
-            ← Retour aux produits
-          </Link>
-          <button className="button" onClick={() => navigate(-1)}>
-            ⤺ Revenir en arrière
-          </button>
+        <div className="cancel-actions">
+          <Link className="btn btn-primary" to="/products">← Retour aux produits</Link>
+          <button className="btn btn-outline" onClick={() => navigate(-1)}>⤺ Revenir en arrière</button>
         </div>
       </section>
     </div>
