@@ -49,8 +49,21 @@
   align-items: center;
 }
 
-.footer-section a:hover {
-  color: #d8b4fe;
+.footer-section a:hover { color: #d8b4fe; }
+
+.footer-logo img {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+.footer-logo h4 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: white;
+  font-weight: bold;
 }
 
 .social-links {
@@ -74,166 +87,21 @@
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.social-links a[aria-label="Facebook"] {
-  background: #1877f2;
-}
-
-.social-links a[aria-label="Facebook"]:hover {
-  background: #166fe5;
-  box-shadow: 0 0 15px rgba(24, 119, 242, 0.5);
-}
-
-.social-links a[aria-label="X (Twitter)"] {
-  background: #000000;
-}
-
-.social-links a[aria-label="X (Twitter)"]:hover {
-  background: #141414;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-}
-
-.social-links a[aria-label="Instagram"] {
-  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-}
-
-.social-links a[aria-label="Instagram"]:hover {
-  box-shadow: 0 0 15px rgba(220, 39, 67, 0.5);
-  transform: scale(1.1);
-}
-
-.social-links a[aria-label="YouTube"] {
-  background: #ff0000;
-}
-
-.social-links a[aria-label="YouTube"]:hover {
-  background: #e60000;
-  box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
-}
-
-.social-links a[aria-label="Twitch"] {
-  background: #9146ff;
-}
-
-.social-links a[aria-label="Twitch"]:hover {
-  background: #7d3ae6;
-  box-shadow: 0 0 15px rgba(145, 70, 255, 0.5);
-}
-
-.social-links a[aria-label="Discord"] {
-  background: #5865f2;
-}
-
-.social-links a[aria-label="Discord"]:hover {
-  background: #4752c4;
-  box-shadow: 0 0 15px rgba(88, 101, 242, 0.5);
-}
-
-.social-links a[aria-label="Email"] {
-  background: #ea4335;
-}
-
-.social-links a[aria-label="Email"]:hover {
-  background: #d33426;
-  box-shadow: 0 0 15px rgba(234, 67, 53, 0.5);
-}
-
-.social-links a:hover {
-  transform: translateY(-3px) scale(1.1);
-  color: white;
-  text-decoration: none;
-}
-
-.newsletter {
-  margin-top: 1rem;
-}
-
-.newsletter input {
-  width: 200px;
-  padding: 10px;
-  border: 1px solid rgba(148, 163, 184, 0.35);
-  border-radius: 10px;
-  margin-right: 8px;
-  background: rgba(2, 6, 23, 0.45);
-  color: #e5e7eb;
-}
-
-.newsletter input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.newsletter button {
-  padding: 10px 20px;
-  background: linear-gradient(to right, #9333ea, #ec4899);
-  border: none;
-  border-radius: 10px;
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 10px 25px -5px rgba(168, 85, 247, 0.25);
-  transition: transform 0.15s ease, filter 0.2s ease;
-}
-
-.newsletter button:hover {
-  transform: translateY(-1px);
-  filter: brightness(1.05);
-}
-
-.payment-methods {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.payment-methods i {
-  font-size: 2rem;
-  color: #cbd5e1;
-  transition: color 0.2s ease;
-}
-
-.payment-methods i:hover {
-  filter: brightness(1.1);
-}
-
-.payment-methods i.fa-cc-visa { color: #1A1F71; }
-.payment-methods i.fa-cc-mastercard {
-  background: linear-gradient(90deg, #EB001B 0%, #F79E1B 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-.payment-methods i.fa-cc-paypal { color: #0070BA; }
-.payment-methods i.fa-cc-amex { color: #2E77BC; }
-.payment-methods i.fa-apple-pay { color: #000000; }
-
-.footer-bottom {
-  text-align: center;
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(148, 163, 184, 0.25);
-  font-size: 0.9rem;
-}
-
-.footer-logo {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.footer-logo img {
-  width: 60px;
-  height: 60px;
-  border-radius: 10px;
-  object-fit: cover;
-  border: 1px solid rgba(148, 163, 184, 0.35);
-}
-
-.footer-logo h4 {
-  margin: 0;
-  font-size: 1.5rem;
-  color: white;
-  font-weight: bold;
-}
+.social-links a[aria-label="Facebook"] { background: #1877f2; }
+.social-links a[aria-label="Facebook"]:hover { background: #166fe5; box-shadow: 0 0 15px rgba(24,119,242,0.5); }
+.social-links a[aria-label="X (Twitter)"] { background: #000000; }
+.social-links a[aria-label="X (Twitter)"]:hover { background: #141414; box-shadow: 0 0 15px rgba(0,0,0,0.5); }
+.social-links a[aria-label="Instagram"] { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.social-links a[aria-label="Instagram"]:hover { box-shadow: 0 0 15px rgba(220,39,67,0.5); transform: scale(1.1); }
+.social-links a[aria-label="YouTube"] { background: #ff0000; }
+.social-links a[aria-label="YouTube"]:hover { background: #e60000; box-shadow: 0 0 15px rgba(255,0,0,0.5); }
+.social-links a[aria-label="Twitch"] { background: #9146ff; }
+.social-links a[aria-label="Twitch"]:hover { background: #7d3ae6; box-shadow: 0 0 15px rgba(145,70,255,0.5); }
+.social-links a[aria-label="Discord"] { background: #5865f2; }
+.social-links a[aria-label="Discord"]:hover { background: #4752c4; box-shadow: 0 0 15px rgba(88,101,242,0.5); }
+.social-links a[aria-label="Email"] { background: #ea4335; }
+.social-links a[aria-label="Email"]:hover { background: #d33426; box-shadow: 0 0 15px rgba(234,67,53,0.5); }
+.social-links a:hover { transform: translateY(-3px) scale(1.1); color: white; text-decoration: none; }
 
 .app-downloads {
   display: flex;
@@ -260,6 +128,46 @@
 .contact-info i {
   color: #c084fc;
   width: 20px;
+}
+
+.newsletter { margin-top: 1rem; }
+.newsletter input {
+  width: 200px;
+  padding: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 10px;
+  margin-right: 8px;
+  background: rgba(2, 6, 23, 0.45);
+  color: #e5e7eb;
+}
+.newsletter input::placeholder { color: rgba(255,255,255,0.7); }
+.newsletter button {
+  padding: 10px 20px;
+  background: linear-gradient(to right, #9333ea, #ec4899);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 10px 25px -5px rgba(168,85,247,0.25);
+  transition: transform 0.15s ease, filter 0.2s ease;
+}
+.newsletter button:hover { transform: translateY(-1px); filter: brightness(1.05); }
+
+.payment-methods { display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; }
+.payment-methods i { font-size: 2rem; color: #cbd5e1; transition: color 0.2s ease; }
+.payment-methods i:hover { filter: brightness(1.1); }
+.payment-methods i.fa-cc-visa { color: #1A1F71; }
+.payment-methods i.fa-cc-mastercard { background: linear-gradient(90deg, #EB001B 0%, #F79E1B 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.payment-methods i.fa-cc-paypal { color: #0070BA; }
+.payment-methods i.fa-cc-amex { color: #2E77BC; }
+.payment-methods i.fa-apple-pay { color: #000000; }
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.25);
+  font-size: 0.9rem;
 }
 
 @media (max-width: 992px) {

@@ -2,7 +2,7 @@
 
 export const data = [[
   {
-    title: "Free Feir",
+    title: "Free Fire",
     description: ["Battle of Morocco 2025: BR","Battle of Morocco 2025: CS","Battle of Morocco 2025: Global"],
     image: "https://cdn-images.dzcdn.net/images/cover/897f077c69f99d61a81416a48cfe9a05/0x1900-000000-80-0-0.jpg",
     color: "red",

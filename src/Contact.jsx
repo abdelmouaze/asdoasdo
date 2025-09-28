@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import './Contact.css';
 
+// Base API URL from env (Vite) with localhost fallback for dev
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+
 function Contact() {
   const [formData, setFormData] = useState({
     name: '',
@@ -9,6 +12,9 @@ function Contact() {
     message: ''
   });
 
+  const [submitting, setSubmitting] = useState(false);
+  const [result, setResult] = useState({ type: '', message: '' });
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -16,11 +22,25 @@ function Contact() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Message sent successfully!');
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    setResult({ type: '', message: '' });
+    setSubmitting(true);
+    try {
+      const res = await fetch(`${API_URL}/api/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.error || 'Failed to send message');
+      setResult({ type: 'success', message: 'Message sent successfully!' });
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (err) {
+      setResult({ type: 'error', message: err.message || 'Something went wrong' });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -40,7 +60,7 @@ function Contact() {
               <div className="contact-details">
                 <div className="contact-item">
                   <h3>📧 Email</h3>
-                  <p>gamingmoize@gmail.com</p>
+                  <p>shadowvortex433@gmail.com</p>
                 </div>
                 
                 <div className="contact-item">
@@ -117,9 +137,21 @@ function Contact() {
                   ></textarea>
                 </div>
                 
-                <button type="submit" className="submit-btn">
-                  Send Message
+                <button type="submit" className="submit-btn" disabled={submitting}>
+                  {submitting ? 'Sending…' : 'Send Message'}
                 </button>
+                {result.message && (
+                  <p
+                    role="alert"
+                    style={{
+                      marginTop: '8px',
+                      color: result.type === 'success' ? '#22c55e' : '#f87171',
+                      fontWeight: 600,
+                    }}
+                  >
+                    {result.message}
+                  </p>
+                )}
               </form>
             </div>
           </div>

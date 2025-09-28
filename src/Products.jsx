@@ -9,44 +9,32 @@
   const featured = [
     {
       id: "f1",
-      title: "Offres PC Gaming",
-      subtitle: "Des configs prêtes pour la victoire",
-      image:"PC Gaming Haute Performance.jpg",
+      image:"NVIDIA.jpeg",
       cta: "Découvrir",
     },
     {
       id: "f2",
-      title: "Cartes Graphiques RTX",
-      subtitle: "Des performances extrêmes en 4K",
-      image:"Carte Graphique RTX 4090.jpg",
+      image:"Msi.jpeg",
       cta: "Voir maintenant",
     },
     {
       id: "f3",
-      title: "Setup Gaming Complet",
-      subtitle: "Style et précision pour votre setup",
-      image:"Setup Gaming Complet.jpg",
+      image:"razere.jpeg",
       cta: "Équiper",
     },
     {
       id: "f4",
-      title: "Clavier Mécanique RGB",
-      subtitle: "Des performances extrêmes en 4K",
-      image:"Clavier Mécanique RGB.jpg",
+      image:"RepublicofGamers.jpeg",
       cta: "Voir maintenant",
     },  
     {
       id: "f5",
-      title: "Souris Gaming Ultra Légère",
-      subtitle: "Des performances extrêmes en 4K",
-      image:"Souris Gaming Ultra Légère.jpg",
+      image:"Intel.jpeg",
       cta: "Voir maintenant",
     },      
     {
       id: "f6",
-      title: "Casque Gaming Surround",
-      subtitle: "Des performances extrêmes en 4K",
-      image:"Casque Gaming Surround.jpg",
+      image:"Ryzene.jpeg",
       cta: "Voir maintenant",
     },
   ];
@@ -72,7 +60,7 @@
   }, [index]);
 
   const products = [
-     {
+     {                                                                                                                                                                                                              
     id: 1,
     title: "PC Gaming Haute Performance",
     category: "PC Complet",
@@ -1023,13 +1011,6 @@ const [category, setCategory] = useState("all");
 
         <div className="products-toolbar">
           <div className="searchbar">
-            <CategoriesMenu
-              categories={categories}
-              current={category}
-              onSelect={(c) => setCategory(c)}
-              count={filtered.length}
-            />
-
             <div className="search-field" role="search">
               <input
                 type="text"
@@ -1038,18 +1019,17 @@ const [category, setCategory] = useState("all");
                 onChange={(e) => setQuery(e.target.value)}
                 aria-label="Rechercher"
               />
-              <button type="button" className="search-submit" aria-label="Rechercher">
-                🔍
-              </button>
             </div>
+               
           </div>
-
+        </div>
+        <div className="cart-row">
           <button className="cart-button" onClick={() => setCartOpen(true)} aria-label="Ouvrir le panier">
             🛒 Panier
             {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
           </button>
         </div>
-
+        {/* Categories below the search bar */}
         <div className="category-chips-row" aria-label="Catégories">
           {categories.map((c) => (
             <button

@@ -76,7 +76,7 @@ function Footer() {
         <div className="footer-section">
           <h4>Contact & Payment</h4> 
           <div className="contact-info">
-            <p><i className="fas fa-envelope"></i>gamingmoize@gmail.com</p>
+            <p><i className="fas fa-envelope"></i>shadowvortex433@gmail.com</p>
             <p><i className="fas fa-phone"></i> (+212) 714257457</p>
             {/* <p><i className="fas fa-map-marker-alt"></i> 123 Gaming Street</p> */}
           </div>
