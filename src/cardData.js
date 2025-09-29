@@ -1,6 +1,7 @@
 
 
-export const data = [[
+export const data =
+ [[
   {
     title: "Free Fire",
     description: ["Battle of Morocco 2025: BR","Battle of Morocco 2025: CS","Battle of Morocco 2025: Global"],

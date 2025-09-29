@@ -12,13 +12,19 @@ export default function RegistrationTable() {
 
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     let cancelled = false;
     async function load() {
       setLoading(true);
+      setError(null);
       try {
         const qs = decodedEventName ? `?game=${encodeURIComponent(decodedEventName)}` : '';
+        // Log the effective API base to aid debugging CORS / env issues
+        console.log('RegistrationTable -> API_URL:', API_URL);
+        console.log('RegistrationTable -> decodedEventName:', decodedEventName);
+        console.log('RegistrationTable -> query string:', qs);
         const res = await fetch(`${API_URL}/api/registrations${qs}`);
         if (!cancelled && res.ok) {
           const data = await res.json();
@@ -29,10 +35,14 @@ export default function RegistrationTable() {
           }
         } else if (!cancelled) {
           setRows([]);
+          setError(`Request failed: ${res.status} ${res.statusText}`);
         }
       } catch (err) {
         console.error("Failed to fetch registrations:", err);
-        if (!cancelled) setRows([]);
+        if (!cancelled) {
+          setRows([]);
+          setError(err?.message || 'Network error while fetching registrations');
+        }
       } finally {
         if (!cancelled) setLoading(false);
       }
@@ -79,6 +89,21 @@ export default function RegistrationTable() {
             <h1 className="reg-title">Registrations — {decodedEventName || 'All'}</h1>
             <Link to="/" className="reg-back">← Back</Link>
           </div>
+
+          {error && (
+            <div className="error-banner" style={{
+              background: '#ffe6e6',
+              color: '#990000',
+              padding: '10px 12px',
+              borderRadius: 8,
+              marginBottom: 12,
+              border: '1px solid #ffcccc'
+            }}>
+              <strong>Failed to load registrations.</strong>
+              <div style={{ fontSize: 13, marginTop: 4 }}>{String(error)}</div>
+              <div style={{ fontSize: 12, opacity: 0.7, marginTop: 4 }}>Check Network tab and ensure backend allows your frontend origin via FRONTEND_URL.</div>
+            </div>
+          )}
 
           {loading ? (
             <p className="empty-cell">Loading...</p>

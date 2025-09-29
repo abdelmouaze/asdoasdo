@@ -1,10 +1,9 @@
 import { useMemo, useState } from 'react';
 import Hero from './Hero';
 import CardContainer from './CardContainer';
-import { data } from './cardData';
 import './Hero.css';
 import SearchBar from './components/SearchBar';
-
+import { data } from './cardData';
 
 function Home() {
   const [searchGame, setSearchGame] = useState('Free Fire');
@@ -52,8 +51,8 @@ function Home() {
         <h1>Esports Tournaments & Events</h1>
         <p> Track live matches and upcoming competitions across all major gaming titles</p>
         <div className="appa">
-          {data.map((card, index) => (
-            <CardContainer key={index} data={card} />
+          {data.map((group, index) => (
+            <CardContainer key={index} data={group} />
           ))}
         </div>
       </section>
