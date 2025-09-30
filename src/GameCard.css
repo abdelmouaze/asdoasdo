@@ -57,6 +57,10 @@
   border-bottom: 1px solid rgba(255,255,255,0.1);
   cursor: pointer;
   transition: color 0.3s;
+  white-space: nowrap;          /* single line */
+  overflow: hidden;             /* hide overflow */
+  text-overflow: ellipsis;      /* add ellipsis */
+  line-height: 1.2;             /* compact line height */
 }
 
 .card-list li:hover {

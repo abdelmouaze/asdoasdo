@@ -6,12 +6,12 @@ function About() {
     <div className="about-page">
       <div className="container">
         <div className="about-content">
-          <h1>About Moize Gaming</h1>
+          <h1>About Shadow Vortex Esports & Gaming</h1>
           <div className="about-grid">
             <div className="about-text">
               <h2>Our Story</h2>
               <p>
-                Moize Gaming was founded with a passion for delivering the ultimate gaming experience. 
+                Shadow Vortex Esports was founded with a passion for delivering the ultimate gaming experience. 
                 We believe that every gamer deserves access to high-quality, cutting-edge gaming gear 
                 that enhances their performance and enjoyment.
               </p>
