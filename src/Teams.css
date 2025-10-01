@@ -2,6 +2,96 @@
   padding: 24px 20px;
 }
 
+/* Admin panel specific styles */
+.admin-teams-page {
+  padding: 0;
+  background: transparent;
+}
+
+.admin-teams-page .teams-header {
+  margin-bottom: 20px;
+}
+
+.admin-teams-page .animated-teams-grid {
+  padding: 10px;
+}
+
+/* Enhanced delete button visibility in admin panel */
+.admin-teams-page .delete-team-btn {
+  background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.5) !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  font-weight: 700 !important;
+}
+
+.admin-teams-page .delete-team-btn:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c) !important;
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.6) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Delete notifications */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.delete-notification {
+  animation: slideIn 0.3s ease-out;
+}
+
+.delete-notification:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+/* Responsive Teams Grid - 4 per row */
+.animated-teams-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  justify-items: center;
+  align-items: start;
+}
+
+/* Grid item wrapper */
+.team-grid-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 280px;
+}
+
+/* Tablet: 2 per row */
+@media (max-width: 1024px) {
+  .animated-teams-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding: 16px;
+  }
+}
+
+/* Mobile: 1 per row */
+@media (max-width: 640px) {
+  .animated-teams-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 12px;
+  }
+}
+
+
 .teams-header {
   max-width: 1200px;
   margin: 0 auto 16px;
@@ -74,21 +164,48 @@
 }
 
 .teams-grid {
-  max-width: 1200px;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  max-width: 100%;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 20px;
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+.teams-grid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.teams-grid::-webkit-scrollbar-track {
+  background: rgba(148,163,184,0.1);
+  border-radius: 4px;
+}
+
+.teams-grid::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.6);
+  border-radius: 4px;
+}
+
+.teams-grid::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.8);
 }
 
 .team-card {
-  background: rgba(15,23,42,0.9);
-  border: 1px solid rgba(148,163,184,0.2);
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+  background: rgba(11,18,32,0.96);
+  border: 1px solid rgba(148,163,184,0.25);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  color: #e5e7eb;
+  min-width: 280px;
+  flex-shrink: 0;
+  width: 280px;
 }
-
 .team-logo {
   height: 140px;
   display: flex;

@@ -35,7 +35,7 @@ function Footer() {
         <a href="https://www.instagram.com/shadow_vortex__1/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
           <i className="fab fa-instagram"></i>
         </a>
-        <a href="https://youtube.com/@shadowvortex-esports?si=ZWzheNSUNBjdDGD1" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <a href="https://www.youtube.com/@shadowvortex-esports?si=ZWzheNSUNBjdDGD1" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
           <i className="fab fa-youtube"></i>
         </a>
         <a href="https://www.twitch.tv/shadow_vortexes/" target="_blank" rel="noopener noreferrer" aria-label="Twitch">

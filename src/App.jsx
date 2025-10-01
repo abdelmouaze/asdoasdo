@@ -11,6 +11,7 @@ import Cancel from './Cancel';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import Profile from './Profile';
+import EditProfile from './EditProfile';
 import Admin from './Admin';
 import Teams from './Teams';
 import TeamsCreate from './TeamsCreate';
@@ -19,11 +20,13 @@ import './App.css';
 import './Nav.css';
 import './Footer.css';
 import './theme.css';
+import './animations.css';
 import ScrollToTop from './ScrollToTop';
 import RegistrationTable from './RegistrationTable';
 import { ThemeProvider } from './context/ThemeContext';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
+import Kalonsi from './Kalonsi';
 
 function App() {
   const RequireAuth = ({ children }) => {
@@ -38,6 +41,11 @@ function App() {
     <BrowserRouter>
     <CartProvider>
       <ThemeProvider>
+        {/* Animated Background Particles */}
+        <div className="animated-bg"></div>
+        {/* Scanline Overlay */}
+        <div className="scanline-overlay"></div>
+        
         <div className="app">
           <header style={{ position: 'sticky', top: 0, zIndex: 1000 }}>
             <Nav />
@@ -59,12 +67,14 @@ function App() {
               <Route path="/order" element={<RequireAuth><Order /></RequireAuth>} />
               <Route path="/cancel" element={<RequireAuth><Cancel /></RequireAuth>} />
               <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
+              <Route path="/edit-profile" element={<RequireAuth><EditProfile /></RequireAuth>} />
               <Route path="/admin" element={<RequireAuth><Admin /></RequireAuth>} />
               <Route path="/teams" element={<RequireAuth><Teams /></RequireAuth>} />
               <Route path="/teams/create" element={<RequireAuth><TeamsCreate /></RequireAuth>} />
               <Route path="/teams/:id" element={<RequireAuth><TeamsDetail /></RequireAuth>} />
               <Route path="/event/:eventName" element={<RequireAuth><EventPage /></RequireAuth>} />
               <Route path="/event/:eventName/registrations" element={<RequireAuth><RegistrationTable /></RequireAuth>} />
+              <Route path="/kalonsi" element={<RequireAuth><Kalonsi /></RequireAuth>} />
             </Routes>
           </main>
           <Footer />

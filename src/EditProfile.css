@@ -1,0 +1,370 @@
+/* Edit Profile Page */
+.edit-profile-page {
+  min-height: 100vh;
+  background: #1a1a2e;
+  color: #ffffff;
+  padding: 24px 20px;
+}
+
+/* Cover Section */
+.edit-cover {
+  max-width: 1100px;
+  margin: 0 auto 16px;
+  position: relative;
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+  background: #0b1220;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-bottom: none;
+  height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+.edit-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: saturate(1.1);
+}
+
+.edit-cover-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0b1220, #111827);
+}
+
+/* Hero Section */
+.edit-hero {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  text-align: center;
+  color: #fff;
+  padding-top: 20px;
+}
+
+/* Back Button */
+.back-btn {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(2, 6, 23, 0.7);
+  color: #e5e7eb;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  background: rgba(2, 6, 23, 0.9);
+  transform: translateY(-2px);
+}
+
+/* Cover Camera Button */
+.cover-camera-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(2, 6, 23, 0.75);
+  color: #e5e7eb;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.cover-camera-btn:hover {
+  background: rgba(2, 6, 23, 0.9);
+  transform: translateY(-2px);
+}
+
+/* Avatar */
+.edit-avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: #0b1220;
+  border: 3px solid rgba(230, 232, 236, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45), inset 0 0 0 6px rgba(2, 6, 23, 0.55);
+  position: relative;
+}
+
+.edit-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.edit-avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4a9eff, #6366f1);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+/* Avatar Camera Button */
+.avatar-camera-btn {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background: rgba(2, 6, 23, 0.9);
+  color: white;
+  border: 2px solid rgba(148, 163, 184, 0.35);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-camera-btn:hover {
+  background: rgba(74, 158, 255, 0.9);
+  transform: scale(1.1);
+  border-color: rgba(74, 158, 255, 0.5);
+}
+
+/* Hero Meta */
+.edit-hero-meta h2 {
+  margin: 6px 0 2px 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+}
+
+.edit-hero-sub {
+  color: #e5e7eb;
+  opacity: 0.95;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.edit-flag {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+/* Form Grid */
+.edit-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 0 auto;
+  max-width: 1100px;
+  padding: 0;
+  background: rgba(11, 18, 32, 0.96);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  padding: 24px;
+}
+
+.form-column {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.form-field {
+  background: rgba(20, 30, 50, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.form-field:hover {
+  background: rgba(20, 30, 50, 0.8);
+}
+
+.form-field label {
+  display: block;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: right;
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.field-icon {
+  position: absolute;
+  left: 1rem;
+  font-size: 1rem;
+  z-index: 2;
+}
+
+.input-container input,
+.input-container select {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.input-container input:focus,
+.input-container select:focus {
+  outline: none;
+  border-color: #4a9eff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.input-container input::placeholder {
+  color: #9ca3af;
+  text-align: right;
+}
+
+.input-container select {
+  text-align: right;
+  direction: rtl;
+}
+
+.input-container select option {
+  background: #1a2332;
+  color: #ffffff;
+}
+
+/* Action Buttons */
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 16px auto 0;
+  max-width: 1100px;
+  padding: 16px 24px;
+}
+
+.cancel-btn, .save-btn-main {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 150px;
+}
+
+.cancel-btn {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.cancel-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+}
+
+.save-btn-main {
+  background: #10b981;
+  color: white;
+}
+
+.save-btn-main:hover {
+  background: #059669;
+}
+
+/* Loading */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.5rem;
+  color: #4a9eff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .edit-cover {
+    height: 300px;
+  }
+  
+  .edit-avatar {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .edit-form-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 16px;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+    padding: 12px 16px;
+  }
+  
+  .cancel-btn, .save-btn-main {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .edit-hero {
+    height: 40vh;
+  }
+  
+  .logo-container {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .logo-text {
+    font-size: 1.5rem;
+  }
+  
+  .logo-subtext {
+    font-size: 0.6rem;
+  }
+  
+  .form-field {
+    padding: 1rem;
+  }
+}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import PlayersGrid from './components/PlayersGrid';
 import './TeamsDetail.css';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
@@ -15,6 +16,7 @@ export default function TeamsDetail() {
   const [tab, setTab] = useState('info');
   const [joining, setJoining] = useState(false);
   const [joinMsg, setJoinMsg] = useState('');
+  const [matches, setMatches] = useState([]);
   const flagEmoji = (code) => (code||'').toUpperCase().replace(/./g, c => String.fromCodePoint(127397 + c.charCodeAt(0)));
 
   useEffect(() => {
@@ -40,6 +42,58 @@ export default function TeamsDetail() {
     })();
     return () => abort.abort();
   }, [id]);
+
+  // Fetch team stats once team is available
+  useEffect(() => {
+    if (!team?._id) return;
+    // If stats already present, skip fetch
+    if (team?.stats && (typeof team.stats.wins !== 'undefined' || typeof team.stats.losses !== 'undefined')) {
+      return;
+    }
+
+    const abort = new AbortController();
+    (async () => {
+      try {
+        const res = await fetch(`${API_URL}/api/teams/${team._id}/stats`, {
+          headers: {
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          },
+          signal: abort.signal,
+        });
+        if (!res.ok) return; // silently ignore if endpoint not available
+        const data = await res.json();
+        const stats = data?.item || data;
+        if (!stats) return;
+        setTeam(prev => ({ ...prev, stats: { wins: Number(stats.wins||0), losses: Number(stats.losses||0) } }));
+      } catch (e) {
+        // ignore stats errors; UI has fallbacks
+      }
+    })();
+    return () => abort.abort();
+  }, [team?._id]);
+
+  // Fetch recent matches (limit 5) once team is available
+  useEffect(() => {
+    if (!team?._id) return;
+    const abort = new AbortController();
+    (async () => {
+      try {
+        const res = await fetch(`${API_URL}/api/teams/${team._id}/matches?limit=5`, {
+          headers: {
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          },
+          signal: abort.signal,
+        });
+        if (!res.ok) return; // ignore silently if not available
+        const data = await res.json();
+        const items = Array.isArray(data?.items) ? data.items : (Array.isArray(data) ? data : []);
+        setMatches(items.slice(0, 5));
+      } catch (_) {
+        // ignore errors; UI will show empty state
+      }
+    })();
+    return () => abort.abort();
+  }, [team?._id]);
 
   // Back handler: go back if possible, otherwise go to teams list
   const handleBack = () => {
@@ -89,6 +143,7 @@ export default function TeamsDetail() {
   if (!team) return <div className="td-page" style={{ paddingTop: '107px' }}><div className="td-error">Team not found</div></div>;
 
   return (
+    <div style={{ paddingTop: '107px' }}>
     <div className="td-page" style={{ paddingTop: '107px' }}>
       {/* Actions bar above the hero */}
       <div className="td-actions">
@@ -125,6 +180,7 @@ export default function TeamsDetail() {
             <div className="td-hero-sub">{team.city || '—'} {team.country ? <span className="td-flag">{flagEmoji(team.country)}</span> : null}</div>
           </div>
         </div>
+
       </div>
 
       <div className="td-statsbar">
@@ -146,7 +202,7 @@ export default function TeamsDetail() {
         </div>
       </div>
 
-      {/* Two-card stats section */}
+      {/* Stats widgets */}
       <div className="td-stats-cards" dir="rtl">
         <div className="td-stat-card td-stat-pie">
           <div className="td-stat-title">الاحصائيات</div>
@@ -234,11 +290,6 @@ export default function TeamsDetail() {
             </div>
 
             <div className="td-card">
-              <h3>Players</h3>
-              <div className="td-empty">No players linked yet.</div>
-            </div>
-
-            <div className="td-card">
               <h3>Achievements</h3>
               <div className="td-empty">No achievements yet.</div>
             </div>
@@ -259,6 +310,10 @@ export default function TeamsDetail() {
           </div>
         </aside>
       </div>
+
+      {/* Players Grid Section - At the bottom */}
+      <PlayersGrid teamId={team._id} players={team.players || []} />
+    </div>
     </div>
   );
 }

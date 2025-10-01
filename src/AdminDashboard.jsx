@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TournamentManager from './TournamentManager';
 import RegistrationViewer from './RegistrationViewer';
+import Teams from './Teams';
 import './AdminDashboard.css';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
@@ -75,6 +76,12 @@ export default function AdminDashboard({ user, token, onLogout }) {
         >
           👥 Registrations
         </button>
+        <button 
+          className={`nav-btn ${activeTab === 'teams' ? 'active' : ''}`}
+          onClick={() => setActiveTab('teams')}
+        >
+          🛡️ Teams
+        </button>
       </nav>
 
       <main className="admin-main">
@@ -90,6 +97,9 @@ export default function AdminDashboard({ user, token, onLogout }) {
             tournaments={tournaments}
             token={token}
           />
+        )}
+        {activeTab === 'teams' && (
+          <Teams isAdminPanel={true} />
         )}
       </main>
     </div>

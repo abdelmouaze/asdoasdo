@@ -1,10 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AnimatedTeamCard from './components/AnimatedTeamCard';
 import './Teams.css';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
-export default function Teams() {
+export default function Teams({ isAdminPanel = false }) {
   const navigate = useNavigate();
   const [teams, setTeams] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -18,8 +19,11 @@ export default function Teams() {
   const [page, setPage] = useState(1);
   const PAGE_SIZE = 12;
   const [hasMore, setHasMore] = useState(true);
+  const [deletingTeam, setDeletingTeam] = useState(null);
 
   const token = localStorage.getItem('auth_token');
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
+  const isAdmin = user.role === 'admin';
 
   // Build query string for backend filters
   const buildQueryString = (pageNum) => {
@@ -80,7 +84,6 @@ export default function Teams() {
       setPage(next);
     } catch (e) {
       setError(e.message || 'Failed to load more');
-      setHasMore(false);
     } finally {
       setLoading(false);
     }
@@ -100,6 +103,88 @@ export default function Teams() {
     });
     return list;
   }, [teams, query, region, maxMembers, sortBy]);
+
+  // Delete team function for admin - direct deletion
+  const handleDeleteTeam = async (teamId, teamName) => {
+    if (!isAdmin) {
+      alert('Only administrators can delete teams.');
+      return;
+    }
+
+    setDeletingTeam(teamId);
+    try {
+      const response = await fetch(`${API_URL}/api/teams/${teamId}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to delete team');
+      }
+
+      // Remove team from local state immediately
+      setTeams(prevTeams => prevTeams.filter(team => team._id !== teamId));
+      
+      // Show success notification
+      const notification = document.createElement('div');
+      notification.className = 'delete-notification';
+      notification.innerHTML = `✅ Team "${teamName}" deleted successfully <span style="float: right; margin-left: 10px; cursor: pointer;">×</span>`;
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #10b981;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+        z-index: 9999;
+        font-weight: 500;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        animation: slideIn 0.3s ease-out;
+        cursor: pointer;
+      `;
+      
+      notification.onclick = () => notification.remove();
+      document.body.appendChild(notification);
+      setTimeout(() => {
+        if (notification.parentNode) notification.remove();
+      }, 3000);
+      
+    } catch (error) {
+      console.error('Error deleting team:', error);
+      
+      // Show error notification
+      const notification = document.createElement('div');
+      notification.className = 'delete-notification error';
+      notification.innerHTML = `❌ Error: ${error.message} <span style="float: right; margin-left: 10px; cursor: pointer;">×</span>`;
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #ef4444;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+        z-index: 9999;
+        font-weight: 500;
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+        animation: slideIn 0.3s ease-out;
+        cursor: pointer;
+      `;
+      
+      notification.onclick = () => notification.remove();
+      document.body.appendChild(notification);
+      setTimeout(() => {
+        if (notification.parentNode) notification.remove();
+      }, 4000);
+    } finally {
+      setDeletingTeam(null);
+    }
+  };
 
   const [form, setForm] = useState({ name: '', country: '', city: '', maxMembers: 5, logo: '' });
 
@@ -123,20 +208,18 @@ export default function Teams() {
       setForm({ name: '', country: '', city: '', maxMembers: 5, logo: '' });
     } catch (e) {
       setError(e.message);
-    } finally {
       setCreating(false);
     }
   };
 
   return (
     <div style={{ paddingTop: '107px' }}>
-    <div className="teams-page" style={{ paddingTop: '107px' }}>
+    <div className={`teams-page ${isAdminPanel ? 'admin-teams-page' : ''}`}>
       <div className="teams-header">
         <div className="left">
           <button className="btn-create" onClick={() => navigate('/teams/create')}>Create Team</button>
         </div>
         <div className="right">
-          <span className="count">Teams {filtered.length}</span>
         </div>
       </div>
 
@@ -170,6 +253,30 @@ export default function Teams() {
       ) : (
         <>
           {filtered.length > 0 ? (
+            <div className="animated-teams-grid">
+              {filtered.map((team, index) => (
+                <div 
+                  key={team._id} 
+                  className="team-grid-item"
+                  onClick={()=>navigate(`/teams/${team._id}`, { state: { team } })} 
+                  style={{cursor:'pointer'}}
+                >
+                  <AnimatedTeamCard 
+                    team={team} 
+                    index={(index % 6) + 1} 
+                    isAdmin={isAdmin}
+                    onDelete={handleDeleteTeam}
+                    isDeleting={deletingTeam === team._id}
+                  />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="teams-empty">No saved teams yet.</div>
+          )}
+          
+          {/* Keep original cards as backup - hidden */}
+          <div style={{display: 'none'}}>
             <div className="teams-grid">
               {filtered.map(team => (
                 <div
@@ -200,9 +307,7 @@ export default function Teams() {
                 </div>
               ))}
             </div>
-          ) : (
-            <div className="teams-empty">No saved teams yet.</div>
-          )}
+          </div>
           <div style={{ display: 'flex', justifyContent: 'center', margin: '16px 0' }}>
             {hasMore && (
               <button className="btn-secondary" onClick={onLoadMore} disabled={loading}>

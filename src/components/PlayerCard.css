@@ -1,0 +1,202 @@
+/* Player Card Component - Based on provided design */
+.card {
+  overflow: visible;
+  width: 190px;
+  height: 254px;
+  margin: 0 auto;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 300ms, box-shadow 300ms;
+  box-shadow: 0px 0px 10px 1px #000000ee;
+  border-radius: 5px;
+}
+
+.front {
+  background-color: #151515;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  color: white;
+}
+
+/* Background Effects - Floating Circles (from provided design) */
+.front .img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-color: #ffbb66;
+  position: relative;
+  filter: blur(15px);
+  animation: floating 2600ms infinite linear;
+}
+
+#bottom {
+  background-color: #ff8866;
+  left: 50px;
+  top: 0px;
+  width: 150px;
+  height: 150px;
+  animation-delay: -800ms;
+}
+
+#right {
+  background-color: #ff2233;
+  left: 160px;
+  top: -80px;
+  width: 30px;
+  height: 30px;
+  animation-delay: -1800ms;
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Front Content Layout */
+.front .front-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+.front-content .badge {
+  background-color: #00000055;
+  padding: 2px 10px;
+  border-radius: 10px;
+  backdrop-filter: blur(2px);
+  width: fit-content;
+  font-size: 10px;
+  color: #fff;
+}
+
+/* Player Avatar */
+.player-avatar {
+  width: 60px;
+  height: 60px;
+  margin: 10px auto;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+}
+
+.player-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.avatar-placeholder svg {
+  width: 30px;
+  height: 30px;
+}
+
+/* Description Section (from provided design) */
+.description {
+  box-shadow: 0px 0px 10px 5px #00000088;
+  width: 100%;
+  padding: 10px;
+  background-color: #00000099;
+  backdrop-filter: blur(5px);
+  border-radius: 5px;
+}
+
+.title {
+  font-size: 11px;
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title p {
+  width: 70%;
+  margin: 0;
+  text-align: left;
+}
+
+.flag {
+  font-size: 14px;
+}
+
+.card-footer {
+  color: #ffffff88;
+  margin-top: 5px;
+  font-size: 8px;
+  text-align: left;
+}
+
+/* Hover Effects - Only scale, no flip */
+.card:hover .content {
+  transform: scale(1.05);
+  box-shadow: 
+    0px 0px 20px 5px #000000ee,
+    0 0 30px rgba(0, 212, 255, 0.3);
+}
+
+.card:hover .player-avatar {
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+}
+
+.card:hover .circle {
+  opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .card {
+    width: 170px;
+    height: 230px;
+  }
+  
+  .player-avatar {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .title {
+    font-size: 10px;
+  }
+  
+  .card-footer {
+    font-size: 7px;
+  }
+}

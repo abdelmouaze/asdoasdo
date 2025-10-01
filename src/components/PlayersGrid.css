@@ -1,0 +1,143 @@
+/* Players Grid Section */
+.players-section {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.players-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.players-header h2 {
+  color: #e5e7eb;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.players-count {
+  background: rgba(0, 212, 255, 0.1);
+  color: #00d4ff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+/* Responsive Grid Layout */
+.players-grid {
+  display: grid;
+  gap: 24px;
+  width: 100%;
+  
+  /* Desktop: 4 cards per row */
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  justify-items: center;
+  align-items: start;
+}
+
+/* Tablet: 2 cards per row */
+@media (max-width: 1023px) {
+  .players-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+  
+  .players-section {
+    padding: 32px 16px;
+  }
+  
+  .players-header h2 {
+    font-size: 1.6rem;
+  }
+}
+
+/* Mobile: 1 card per row */
+@media (max-width: 639px) {
+  .players-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .players-section {
+    padding: 24px 12px;
+  }
+  
+  .players-header {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+  
+  .players-header h2 {
+    font-size: 1.4rem;
+  }
+}
+
+/* Empty State */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: #94a3b8;
+}
+
+.empty-icon {
+  font-size: 4rem;
+  margin-bottom: 16px;
+  opacity: 0.6;
+}
+
+.empty-state h3 {
+  font-size: 1.2rem;
+  margin: 0 0 8px 0;
+  color: #cbd5e1;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Animation for new cards */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.players-grid .card {
+  animation: slideInUp 0.5s ease-out;
+}
+
+/* Stagger animation for multiple cards */
+.players-grid .card:nth-child(1) { animation-delay: 0.1s; }
+.players-grid .card:nth-child(2) { animation-delay: 0.2s; }
+.players-grid .card:nth-child(3) { animation-delay: 0.3s; }
+.players-grid .card:nth-child(4) { animation-delay: 0.4s; }
+.players-grid .card:nth-child(5) { animation-delay: 0.5s; }
+.players-grid .card:nth-child(6) { animation-delay: 0.6s; }
+.players-grid .card:nth-child(7) { animation-delay: 0.7s; }
+.players-grid .card:nth-child(8) { animation-delay: 0.8s; }
+
+/* Ensure grid maintains alignment */
+.players-grid::after {
+  content: '';
+  grid-column: 1 / -1;
+  height: 0;
+}

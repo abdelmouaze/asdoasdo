@@ -1,0 +1,322 @@
+/* From Uiverse.io by Ashon-G */ 
+.animated-team-card {
+  position: relative;
+  height: 300px;
+  width: 230px;
+  min-width: 230px;
+  max-width: 230px;
+  margin: 0 auto;
+  flex-shrink: 0;
+  flex-grow: 0;
+  display: block;
+}
+
+/* Remove all filters - use dynamic colors only */
+
+.animated-team-card .boxshadow {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border: 1px solid var(--team-color, rgb(0, 212, 255));
+  transform: scale(0.8);
+  box-shadow: var(--team-color, rgb(0, 212, 255)) 0px 30px 70px 0px;
+  transition: all 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+.animated-team-card .main {
+  width: 230px;
+  height: 300px;
+  margin: 0;
+  overflow: hidden;
+  background: linear-gradient(
+    0deg,
+    #1a1a2e 0%,
+    var(--team-color, #00d4ff) 60%,
+    #1a1a2e 100%
+  );
+  position: relative;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 40px,
+    100% calc(100% - 40px),
+    calc(100% - 40px) 100%,
+    40px 100%,
+    0 calc(100% - 40px)
+  );
+  box-shadow: var(--team-color, rgb(0, 212, 255)) 0px 7px 29px 0px;
+  transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+.animated-team-card .main .top {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  width: 0px;
+  height: 0px;
+  z-index: 2;
+  border-top: 115px solid black;
+  border-left: 115px solid transparent;
+  border-right: 115px solid transparent;
+  transition: all 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+.animated-team-card .main .side {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  transform: translateX(-50%);
+  height: 101%;
+  background: black;
+  clip-path: polygon(0% 0%, 50% 0, 95% 45%, 100% 100%, 0% 100%);
+  transition: all 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86) 1s;
+}
+
+.animated-team-card .main .left {
+  left: 0;
+}
+
+.animated-team-card .main .right {
+  right: 0;
+  transform: translateX(50%) scale(-1, 1);
+}
+
+/* Team Logo Background */
+.animated-team-card .team-logo-bg {
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(255,255,255,0.3);
+  z-index: 3;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.animated-team-card .team-logo-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.animated-team-card .main .title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 95px;
+  font-weight: bold;
+  font-size: 16px;
+  opacity: 0;
+  z-index: -1;
+  transition: all 0.2s ease-out 0s;
+  color: white;
+  text-align: center;
+  width: 90%;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+/* Team Info */
+.animated-team-card .team-info {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 125px;
+  width: 90%;
+  text-align: center;
+  opacity: 0;
+  z-index: -1;
+  transition: all 0.2s ease-out 0.1s;
+  color: rgba(255,255,255,0.9);
+  font-size: 12px;
+}
+
+.animated-team-card .info-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.animated-team-card .flag {
+  background: rgba(255,255,255,0.2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.animated-team-card .city {
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+.animated-team-card .members-count {
+  font-size: 11px;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+/* Join Team Button */
+.animated-team-card .join-button-container {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  z-index: -1;
+  transition: all 0.3s ease-out 0.2s;
+}
+
+.animated-team-card .join-team-btn {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+.animated-team-card .join-team-btn:hover {
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(139, 92, 246, 0.4);
+}
+
+/* Admin Delete Button */
+.animated-team-card .admin-delete-container {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  opacity: 1;
+  z-index: 5;
+  transition: all 0.2s ease;
+}
+
+.animated-team-card .delete-team-btn {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 3px 10px rgba(239, 68, 68, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  min-width: 70px;
+}
+
+.animated-team-card .delete-team-btn:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+}
+
+.animated-team-card .delete-team-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Delete button always visible for admin */
+.animated-team-card .admin-delete-container {
+  opacity: 1 !important;
+  z-index: 5 !important;
+}
+
+
+.animated-team-card:hover .main {
+  transform: scale(1.1);
+}
+
+.animated-team-card:hover .boxshadow {
+  transform: scale(0.9);
+  box-shadow: var(--team-color, rgb(0, 212, 255)) 0px 40px 90px 10px;
+}
+
+.animated-team-card:hover .main .top {
+  top: -50px;
+}
+
+.animated-team-card:hover .main .left {
+  left: -50px;
+  transition: all 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.1s;
+}
+
+.animated-team-card:hover .main .right {
+  right: -50px;
+  transition: all 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.1s;
+}
+
+.animated-team-card:hover .team-logo-bg {
+  transform: translateX(-50%) scale(1.1);
+  border-color: rgba(255,255,255,0.5);
+  box-shadow: 0 0 20px rgba(var(--team-color-rgb, 0, 212, 255), 0.4);
+}
+
+.animated-team-card:hover .main .title {
+  opacity: 1;
+  transition: all 0.2s ease-out 1.3s;
+  z-index: 3;
+}
+
+.animated-team-card:hover .team-info {
+  opacity: 1;
+  transition: all 0.2s ease-out 1.4s;
+  z-index: 3;
+}
+
+.animated-team-card:hover .join-button-container {
+  opacity: 1;
+  transition: all 0.3s ease-out 1.5s;
+  z-index: 3;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .animated-team-card {
+    height: 250px;
+    max-width: 180px;
+  }
+  
+  .animated-team-card .main {
+    max-width: 180px;
+    height: 250px;
+  }
+  
+  .animated-team-card .team-logo-bg {
+    width: 50px;
+    height: 50px;
+    top: 15px;
+  }
+  
+  .animated-team-card .main .title {
+    font-size: 14px;
+    top: 75px;
+  }
+  
+  .animated-team-card .team-info {
+    top: 100px;
+    font-size: 10px;
+  }
+  
+  .animated-team-card .join-button-container {
+    bottom: 15px;
+  }
+  
+  .animated-team-card .join-team-btn {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+}

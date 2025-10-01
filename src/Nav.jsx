@@ -72,9 +72,10 @@ function Nav() {
 
       <ul className={`nav-links${open ? ' open' : ''}`}>
         <li><Link to="/" onClick={() => setOpen(false)}>Home</Link></li>
+        <li><Link to="/teams" onClick={() => setOpen(false)}>Teams</Link></li>
+        <li><Link to="/kalonsi" onClick={() => setOpen(false)}>Lives</Link></li>
         <li><Link to="/about" onClick={() => setOpen(false)}>About</Link></li>
         <li><Link to="/products" onClick={() => setOpen(false)}>Products</Link></li>
-        <li><Link to="/teams" onClick={() => setOpen(false)}>Teams</Link></li>
         <li><Link to="/contact" onClick={() => setOpen(false)}>Contact</Link></li>
         {!user ? (
           <>

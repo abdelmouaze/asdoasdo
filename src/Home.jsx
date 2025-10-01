@@ -34,7 +34,7 @@ function Home() {
   };
 
   return (
-    <div style={{ position: 'relative', paddingTop: '107px' }}>
+    <div className="home" style={{ position: 'relative', paddingTop: '107px' }}>
       <Hero />
       <SearchBar onSearch={handleSearch} />
 

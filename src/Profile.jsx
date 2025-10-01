@@ -35,56 +35,86 @@ export default function Profile() {
     return (base[0] || 'U').toUpperCase();
   }, [user]);
 
-  function logout() {
-    localStorage.removeItem('auth_token');
-    localStorage.removeItem('auth_user');
-    navigate('/signin');
-  }
+  const flagEmoji = (code) => (code||'').toUpperCase().replace(/./g, c => String.fromCodePoint(127397 + c.charCodeAt(0)));
 
   if (!user) {
     return (
       <div className="profile-page">
-        <div className="profile-card">
-          <div className="profile-loading">Loading profile...</div>
-        </div>
+        <div className="profile-loading">Loading profile...</div>
       </div>
     );
   }
 
   return (
     <div style={{ paddingTop: '107px' }}>
-    <div className="profile-page" style={{ paddingTop: '120px' }}>
-      <div className="profile-card">
-        <div className="profile-header">
-          {user?.avatarUrl ? (
-            <img className="profile-avatar-img" src={user.avatarUrl} alt={displayName} />
+      <div className="profile-page">
+        
+        {/* Cover Section */}
+        <div className="profile-cover">
+          {user.coverImage ? (
+            <img src={user.coverImage} alt="Profile cover" />
           ) : (
-            <div className="profile-avatar" aria-hidden>{initial}</div>
+            <div className="profile-cover-placeholder" />
           )}
-          <div className="profile-title">
-            <h2>{displayName}</h2>
-            <p>{user.email}</p>
+
+          {/* Hero Section */}
+          <div className="profile-hero">
+            {/* Edit Profile Button */}
+            <button className="edit-profile-btn" onClick={() => navigate('/edit-profile')}>
+              <span>⚙️</span>
+              تعديل الملف الشخصي
+            </button>
+
+            <div className="profile-avatar">
+              {user?.avatarUrl ? (
+                <img src={user.avatarUrl} alt={displayName} />
+              ) : (
+                <div className="profile-avatar-placeholder">{initial}</div>
+              )}
+            </div>
+
+            <div className="profile-hero-meta">
+              <h2>{displayName}</h2>
+              <div className="profile-hero-sub">
+                {user.city || 'Europe'} {user.country ? <span className="profile-flag">{flagEmoji(user.country)}</span> : '🌍'}
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="profile-section">
-          <h3>Account</h3>
-          <div className="kv">
-            <span className="k">Name</span>
-            <span className="v">{displayName}</span>
+        {/* Stats Bar */}
+        <div className="profile-statsbar">
+          <div className="profile-statitem">
+            <div className="icon">👤</div>
+            <div className="statinfo">
+              <div className="statlabel">Owner</div>
+              <div className="statvalue">—</div>
+            </div>
           </div>
-          <div className="kv">
-            <span className="k">Email</span>
-            <span className="v">{user.email}</span>
+          <div className="profile-statitem">
+            <div className="icon">📅</div>
+            <div className="statinfo">
+              <div className="statlabel">Member since</div>
+              <div className="statvalue">01/10/2025</div>
+            </div>
+          </div>
+          <div className="profile-statitem">
+            <div className="icon">🏆</div>
+            <div className="statinfo">
+              <div className="statlabel">Wins</div>
+              <div className="statvalue">0</div>
+            </div>
+          </div>
+          <div className="profile-statitem">
+            <div className="icon">🎮</div>
+            <div className="statinfo">
+              <div className="statlabel">Total rounds</div>
+              <div className="statvalue">0</div>
+            </div>
           </div>
         </div>
 
-        <div className="profile-actions">
-          <button className="btn-outline" onClick={() => navigate('/')}>Back to Home</button>
-          <button className="btn-primary" onClick={logout}>Logout</button>
-        </div>
       </div>
-    </div>
     </div>
   );
 }
