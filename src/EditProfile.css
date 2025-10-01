@@ -279,7 +279,7 @@
   padding: 16px 24px;
 }
 
-.cancel-btn, .save-btn-main {
+.cancel-btn, .save-btn-main, .clear-images-btn {
   padding: 1rem 2rem;
   border: none;
   border-radius: 10px;
@@ -298,6 +298,16 @@
 
 .cancel-btn:hover {
   background: rgba(239, 68, 68, 0.2);
+}
+
+.clear-images-btn {
+  background: rgba(251, 146, 60, 0.1);
+  color: #fb923c;
+  border: 1px solid rgba(251, 146, 60, 0.3);
+}
+
+.clear-images-btn:hover {
+  background: rgba(251, 146, 60, 0.2);
 }
 
 .save-btn-main {

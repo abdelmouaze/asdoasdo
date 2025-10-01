@@ -73,12 +73,30 @@ function EditProfile() {
         avatarUrl: avatarImage || user.avatarUrl,
         coverImage: coverImage || user.coverImage
       };
-      localStorage.setItem('auth_user', JSON.stringify(updatedUser));
-      alert('تم حفظ التغييرات بنجاح!');
-      navigate('/profile');
+      
+      // Try to save
+      try {
+        localStorage.setItem('auth_user', JSON.stringify(updatedUser));
+        alert('تم حفظ التغييرات بنجاح!');
+        navigate('/profile');
+      } catch (storageError) {
+        if (storageError.name === 'QuotaExceededError') {
+          // Storage is full, try to save without images
+          alert('الصور كبيرة جداً! سيتم حفظ البيانات بدون الصور.');
+          const userWithoutImages = { 
+            ...user, 
+            ...formData,
+            name: `${formData.firstName} ${formData.lastName}`.trim()
+          };
+          localStorage.setItem('auth_user', JSON.stringify(userWithoutImages));
+          navigate('/profile');
+        } else {
+          throw storageError;
+        }
+      }
     } catch (error) {
       console.error('Error saving user data:', error);
-      alert('حدث خطأ أثناء حفظ التغييرات');
+      alert('حدث خطأ أثناء حفظ التغييرات: ' + error.message);
     }
   };
 
@@ -90,11 +108,45 @@ function EditProfile() {
     if (file && file.type.startsWith('image/')) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        if (type === 'avatar') {
-          setAvatarImage(e.target.result);
-        } else if (type === 'cover') {
-          setCoverImage(e.target.result);
-        }
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          
+          // Set max dimensions
+          const maxWidth = type === 'avatar' ? 300 : 800;
+          const maxHeight = type === 'avatar' ? 300 : 400;
+          
+          let width = img.width;
+          let height = img.height;
+          
+          // Calculate new dimensions
+          if (width > height) {
+            if (width > maxWidth) {
+              height = (height * maxWidth) / width;
+              width = maxWidth;
+            }
+          } else {
+            if (height > maxHeight) {
+              width = (width * maxHeight) / height;
+              height = maxHeight;
+            }
+          }
+          
+          canvas.width = width;
+          canvas.height = height;
+          ctx.drawImage(img, 0, 0, width, height);
+          
+          // Compress to JPEG with 0.7 quality
+          const compressedImage = canvas.toDataURL('image/jpeg', 0.7);
+          
+          if (type === 'avatar') {
+            setAvatarImage(compressedImage);
+          } else if (type === 'cover') {
+            setCoverImage(compressedImage);
+          }
+        };
+        img.src = e.target.result;
       };
       reader.readAsDataURL(file);
     }
@@ -102,6 +154,22 @@ function EditProfile() {
 
   const initial = user?.name ? user.name.charAt(0).toUpperCase() : 'U';
   const flagEmoji = (code) => (code||'').toUpperCase().replace(/./g, c => String.fromCodePoint(127397 + c.charCodeAt(0)));
+
+  // Function to clear old images from localStorage
+  const clearOldImages = () => {
+    if (window.confirm('هل تريد حذف الصور القديمة لتوفير المساحة؟')) {
+      const userData = localStorage.getItem('auth_user');
+      if (userData) {
+        const parsedUser = JSON.parse(userData);
+        delete parsedUser.avatarUrl;
+        delete parsedUser.coverImage;
+        localStorage.setItem('auth_user', JSON.stringify(parsedUser));
+        setAvatarImage(null);
+        setCoverImage(null);
+        alert('تم حذف الصور القديمة بنجاح!');
+      }
+    }
+  };
 
   if (!user) {
     return (
@@ -345,6 +413,15 @@ function EditProfile() {
           <button className="cancel-btn" onClick={handleCancel}>
             إلغاء
           </button>
+          {(avatarImage || coverImage) && (
+            <button 
+              className="clear-images-btn" 
+              onClick={clearOldImages}
+              type="button"
+            >
+              🗑️ حذف الصور
+            </button>
+          )}
           <button className="save-btn-main" onClick={handleSave}>
             💾 حفظ التغييرات
           </button>
