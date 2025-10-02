@@ -196,7 +196,7 @@ function EditProfile() {
             {/* Back Button */}
             <button className="back-btn" onClick={handleCancel}>
               <span>←</span>
-              العودة
+              Retour
             </button>
 
             {/* Cover Camera Button */}
@@ -205,7 +205,7 @@ function EditProfile() {
               onClick={() => coverInputRef.current?.click()}
               title="Change Cover Photo"
             >
-              📷 تغيير الغلاف
+              📷 Changer la couverture
             </button>
             <input
               ref={coverInputRef}
@@ -254,7 +254,7 @@ function EditProfile() {
             
             {/* Phone Number */}
             <div className="form-field">
-              <label>رقم الهاتف</label>
+              <label>Numéro de téléphone</label>
               <div className="input-container">
                 <span className="field-icon"></span>
                 <input
@@ -262,14 +262,14 @@ function EditProfile() {
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  placeholder="أدخل رقم الهاتف"
+                  placeholder="Entrez votre numéro"
                 />
               </div>
             </div>
 
             {/* Birth Date */}
             <div className="form-field">
-              <label>تاريخ الميلاد</label>
+              <label>Date de naissance</label>
               <div className="input-container">
                 <input
                   type="date"
@@ -282,7 +282,7 @@ function EditProfile() {
 
             {/* First Name */}
             <div className="form-field">
-              <label>الاسم الأول</label>
+              <label>Prénom</label>
               <div className="input-container">
                 <input
                   type="text"
@@ -296,28 +296,28 @@ function EditProfile() {
 
             {/* Confirm Password */}
             <div className="form-field">
-              <label>تأكيد كلمة المرور الجديدة</label>
+              <label>Confirmer le mot de passe</label>
               <div className="input-container">
                 <input
                   type="password"
                   name="confirmPassword"
                   value={formData.confirmPassword}
                   onChange={handleInputChange}
-                  placeholder="تأكيد كلمة المرور الجديدة"
+                  placeholder="Confirmer le mot de passe"
                 />
               </div>
             </div>
 
             {/* City */}
             <div className="form-field">
-              <label>المدينة</label>
+              <label>Ville</label>
               <div className="input-container">
                 <input
                   type="text"
                   name="city"
                   value={formData.city}
                   onChange={handleInputChange}
-                  placeholder="الإمارات العربية المتحدة"
+                  placeholder="Entrez votre ville"
                 />
               </div>
             </div>
@@ -329,7 +329,7 @@ function EditProfile() {
             
             {/* Username */}
             <div className="form-field">
-              <label>اسم المستخدم</label>
+              <label>Nom d'utilisateur</label>
               <div className="input-container">
                 <input
                   type="text"
@@ -343,7 +343,7 @@ function EditProfile() {
 
             {/* Email */}
             <div className="form-field">
-              <label>البريد الإلكتروني</label>
+              <label>Email</label>
               <div className="input-container">
                 <input
                   type="email"
@@ -357,7 +357,7 @@ function EditProfile() {
 
             {/* Last Name */}
             <div className="form-field">
-              <label>الاسم الأخير</label>
+              <label>Nom de famille</label>
               <div className="input-container">
                 <input
                   type="text"
@@ -371,21 +371,21 @@ function EditProfile() {
 
             {/* Password */}
             <div className="form-field">
-              <label>كلمة السر</label>
+              <label>Mot de passe</label>
               <div className="input-container">
                 <input
                   type="password"
                   name="password"
                   value={formData.password}
                   onChange={handleInputChange}
-                  placeholder="أدخل كلمة المرور الجديدة"
+                  placeholder="Entrez le nouveau mot de passe"
                 />
               </div>
             </div>
 
             {/* Country */}
             <div className="form-field">
-              <label>البلد</label>
+              <label>Pays</label>
               <div className="input-container">
                 <select
                   name="country"
@@ -394,12 +394,12 @@ function EditProfile() {
                 >
                   <option value="United Arab Emirates">United Arab Emirates 🇦🇪</option>
                   <option value="Europe">Europe 🇪🇺</option>
-                  <option value="Algeria">الجزائر 🇩🇿</option>
-                  <option value="Morocco">المغرب 🇲🇦</option>
-                  <option value="Tunisia">تونس 🇹🇳</option>
-                  <option value="Egypt">مصر 🇪🇬</option>
-                  <option value="Saudi Arabia">السعودية 🇸🇦</option>
-                  <option value="USA">أمريكا 🇺🇸</option>
+                  <option value="Algeria">Algérie 🇩🇿</option>
+                  <option value="Morocco">Maroc 🇲🇦</option>
+                  <option value="Tunisia">Tunisie 🇹🇳</option>
+                  <option value="Egypt">Égypte 🇪🇬</option>
+                  <option value="Saudi Arabia">Arabie Saoudite 🇸🇦</option>
+                  <option value="USA">États-Unis 🇺🇸</option>
                 </select>
               </div>
             </div>
@@ -411,7 +411,7 @@ function EditProfile() {
         {/* Action Buttons */}
         <div className="form-actions">
           <button className="cancel-btn" onClick={handleCancel}>
-            إلغاء
+            Annuler
           </button>
           {(avatarImage || coverImage) && (
             <button 
@@ -419,11 +419,11 @@ function EditProfile() {
               onClick={clearOldImages}
               type="button"
             >
-              🗑️ حذف الصور
+              🗑️ Supprimer les images
             </button>
           )}
           <button className="save-btn-main" onClick={handleSave}>
-            💾 حفظ التغييرات
+            💾 Enregistrer les modifications
           </button>
         </div>
 

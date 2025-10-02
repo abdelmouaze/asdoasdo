@@ -26,6 +26,7 @@ function Contact() {
     e.preventDefault();
     setResult({ type: '', message: '' });
     setSubmitting(true);
+    
     try {
       const res = await fetch(`${API_URL}/api/contact`, {
         method: 'POST',
@@ -34,10 +35,10 @@ function Contact() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data?.error || 'Failed to send message');
-      setResult({ type: 'success', message: 'Message sent successfully!' });
+      setResult({ type: 'success', message: 'تم إرسال رسالتك بنجاح! ✅' });
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (err) {
-      setResult({ type: 'error', message: err.message || 'Something went wrong' });
+      setResult({ type: 'error', message: err.message || 'حدث خطأ أثناء الإرسال' });
     } finally {
       setSubmitting(false);
     }
