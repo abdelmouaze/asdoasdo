@@ -62,7 +62,7 @@ export default function Profile() {
             {/* Edit Profile Button */}
             <button className="edit-profile-btn" onClick={() => navigate('/edit-profile')}>
               <span>⚙️</span>
-              تعديل الملف الشخصي
+              Modifier le profil
             </button>
 
             <div className="profile-avatar">
@@ -87,28 +87,28 @@ export default function Profile() {
           <div className="profile-statitem">
             <div className="icon">👤</div>
             <div className="statinfo">
-              <div className="statlabel">Owner</div>
+              <div className="statlabel">Propriétaire</div>
               <div className="statvalue">—</div>
             </div>
           </div>
           <div className="profile-statitem">
             <div className="icon">📅</div>
             <div className="statinfo">
-              <div className="statlabel">Member since</div>
+              <div className="statlabel">Membre depuis</div>
               <div className="statvalue">01/10/2025</div>
             </div>
           </div>
           <div className="profile-statitem">
             <div className="icon">🏆</div>
             <div className="statinfo">
-              <div className="statlabel">Wins</div>
+              <div className="statlabel">Victoires</div>
               <div className="statvalue">0</div>
             </div>
           </div>
           <div className="profile-statitem">
             <div className="icon">🎮</div>
             <div className="statinfo">
-              <div className="statlabel">Total rounds</div>
+              <div className="statlabel">Total de rounds</div>
               <div className="statvalue">0</div>
             </div>
           </div>

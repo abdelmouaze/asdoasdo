@@ -46,6 +46,23 @@ export default function Teams({ isAdminPanel = false }) {
       headers: token ? { Authorization: `Bearer ${token}` } : {},
       signal,
     });
+    
+    // Handle 401 errors (invalid/expired token)
+    if (res.status === 401) {
+      console.log('Token expired or invalid, clearing auth and retrying as guest');
+      localStorage.removeItem('auth_token');
+      localStorage.removeItem('auth_user');
+      // Retry without token
+      const retryRes = await fetch(`${API_URL}/api/teams?${qs}`, { signal });
+      if (!retryRes.ok) throw new Error('Failed to load teams');
+      const data = await retryRes.json();
+      const items = Array.isArray(data.items) ? data.items : [];
+      setTeams(prev => replace ? items : [...prev, ...items]);
+      const pagination = data.pagination || { page: pageNum, pages: items.length ? pageNum + 1 : pageNum };
+      setHasMore(pagination.page < pagination.pages);
+      return;
+    }
+    
     if (!res.ok) throw new Error('Failed to load teams');
     const data = await res.json();
     const items = Array.isArray(data.items) ? data.items : [];

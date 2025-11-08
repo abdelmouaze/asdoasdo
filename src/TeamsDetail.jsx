@@ -30,6 +30,20 @@ export default function TeamsDetail() {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
           signal: abort.signal,
         });
+        
+        // Handle 401 errors (invalid/expired token)
+        if (res.status === 401 && token) {
+          console.log('Token expired or invalid, clearing auth and retrying as guest');
+          localStorage.removeItem('auth_token');
+          localStorage.removeItem('auth_user');
+          // Retry without token
+          const retryRes = await fetch(`${API_URL}/api/teams/${id}`, { signal: abort.signal });
+          if (!retryRes.ok) throw new Error('Failed to load team');
+          const data = await retryRes.json();
+          setTeam(data.item || data);
+          return;
+        }
+        
         if (!res.ok) throw new Error('Failed to load team');
         const data = await res.json();
         setTeam(data.item || data);
@@ -205,7 +219,7 @@ export default function TeamsDetail() {
       {/* Stats widgets */}
       <div className="td-stats-cards" dir="rtl">
         <div className="td-stat-card td-stat-pie">
-          <div className="td-stat-title">الاحصائيات</div>
+          <div className="td-stat-title">Statistics</div>
           <div className="td-stat-body td-pie-wrap">
             {(() => {
               const wins = Number(team.stats?.wins || 0);
@@ -231,7 +245,7 @@ export default function TeamsDetail() {
         </div>
 
         <div className="td-stat-card td-stat-summary">
-          <div className="td-stat-title">الاحصائيات</div>
+          <div className="td-stat-title">Statistics</div>
           <div className="td-stat-body td-summary">
             {(() => {
               const wins = Number(team.stats?.wins || 0);
@@ -241,8 +255,8 @@ export default function TeamsDetail() {
               return (
                 <>
                   <div className="td-summary-text">
-                    مجموع المباريات الملعوبة: {total} (الإنتصارات {wins} | الخسارات {losses})
-                    <br /> نسبة الفوز <b>%{winPct}</b>
+                    Total matches played: {total} (Wins {wins} | Losses {losses})
+                    <br /> Win rate <b>{winPct}%</b>
                   </div>
                   <div className="td-bar">
                     <div className="td-bar-win" style={{ width: `${winPct}%` }}>{winPct}%</div>
